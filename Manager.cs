@@ -6,8 +6,8 @@ namespace CPE311_TermProject
 {
     class Manager 
     {
-        string username;
-        string password;
+        private string username;
+        private string password;
 
         public Manager(string username, string password)
         {
@@ -20,17 +20,174 @@ namespace CPE311_TermProject
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.stars);
             Console.Write(C.indent1 + "Enter Username:  ");
-            String username = Console.ReadLine();
+            string uname = Console.ReadLine();
             Console.Write(C.indent1 + "Enter Password:  ");
-            String password = Console.ReadLine();
-            if (username == "Manager" && password == "Manager")
+            string upass = Console.ReadLine();
+            if (uname == "Manager" && upass == "Manager")
             {
-                Console.WriteLine("Manager Signed In Correctly"); /// Manager Main Screen
+                ManagerScreen(); /// Manager Main Screen
             }
             else
             {
-                Console.WriteLine("Wrong Login information try again or sign up if you are not");
+                C.WriteLine("Wrong Login information try again");
+                System.Login();
             }
+        }
+
+        public static void ManagerScreen()
+        {
+            try
+            {
+            int choice;
+            while (true)
+            {
+                C.WriteLine(C.stars);
+                C.WriteLine(C.stars);
+                C.WriteLine(C.stars);
+                C.WriteLine(C.indent2 + "Manager");
+                C.WriteLine("1. Create warehouse");
+                C.WriteLine("2. Add item to warehouse");
+                C.WriteLine("3. View warehouses");
+                C.WriteLine("4. View supply documents");
+                C.WriteLine("5. Delete old supply Documents");
+                C.WriteLine("6. Exit");
+                C.WriteLine(C.stars);
+                C.WriteLine(C.stars);
+                Console.Write(C.indent1 + "Choice:");
+                choice = Convert.ToInt32(Console.ReadLine());
+                if (choice == 1)
+                {
+                        //Create Warehouse
+                        Create_Warehouse();
+
+                }
+                    else if (choice == 2)
+                {
+                        //Add item warehouse(); 
+                        C.WriteLine(C.stars+"\n");
+                        bool loop = false;
+                        char again; 
+                        do
+                        {
+                            AddItemtoWarehouse();
+
+                            //again = 'u';
+                            //while(again != 'Y'&& again != 'y'|| again != 'N'|| again != 'n') { 
+
+                            C.WriteLine("Enter another Item (Y/N): ");
+                            again = (char)Console.Read();
+                            
+                            if (again == 'Y' || again == 'y')
+                            {
+                                loop = true;
+                            }
+                            else /*if (again == 'N' || again == 'n')*/ 
+                            {
+                                loop = false;
+                            }
+                            /*else
+                            {
+                                C.WriteLine("Wrong Input\n");
+                            }*/
+
+                            //}
+
+                        } while (loop);
+                        
+                }
+                else if (choice == 3)
+                {
+                        //
+                        //View warehouses();
+                        //
+                }
+                else if (choice == 4)
+                {
+                        //
+                        //View supply documents();
+                        //
+                }
+                else if (choice == 5)
+                {
+                        //
+                        //Delete old supply Documents();
+                        //
+                }
+                else if (choice == 6)
+                {
+                        //
+                        //exit();
+                        //
+                    C.WriteLine("Logging Out...");
+                    System.Login();
+                    break;
+                }
+                    else
+                {
+                    Console.WriteLine("Incorrect Choice, Please try again...");
+                }
+            }
+            }
+            catch (Exception e)
+            {
+                C.WriteLine(e.Message+" Please try again...");
+                ManagerScreen();
+            }
+        }
+        public static void Create_Warehouse() 
+        {
+            Console.WriteLine(new String('-',60));
+            Console.Write(C.indent1 + "Enter Warehouse Name:  ");
+            string wName = Console.ReadLine();
+
+            //
+            //check if wName is in the system 
+            /*
+            if (InWarehouses(wName))
+            {
+                C.WriteLine("Warehouse already exists.");
+            }
+            else
+            {
+                //append
+            }
+            */
+
+        }
+
+        public static void AddItemtoWarehouse()
+        {
+            Console.Write(C.indent1 + "Enter Warehouse Name:  ");
+            string wName = Console.ReadLine();
+
+            //
+            // TO-DO:check if warehouse exists
+            S:
+            try { 
+            Console.Write(C.indent1 + "Enter item's Name:  ");
+            string Iname = Console.ReadLine();
+            Console.Write(C.indent1 + "Enter item's Price:  ");
+            double price = Convert.ToDouble(Console.ReadLine());
+            if(price < 0)
+                {
+                    throw new FormatException(); 
+                }
+            Console.Write(C.indent1 + "Enter item's Code:  ");
+            Int64 Code = Convert.ToInt64(Console.ReadLine());
+            Console.Write(C.indent1 + "Enter item's Quantity:  ");
+            UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
+            }
+            catch 
+            {
+                C.WriteLine("Wrong Input,Try Again...");
+                goto S;
+            }
+            //
+            //
+            //if item already exist in the warehouse 
+            //adds the quantity to the existing item 
+            //else creates a new item and inserts it to the warehouse 
+            //
         }
     }
 }

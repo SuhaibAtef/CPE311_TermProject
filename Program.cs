@@ -8,16 +8,17 @@ namespace CPE311_TermProject
 
        static public void Login()
         {
+            try
+            {
+                
+            
             int choice;
-
-
-
             while (true)
             {
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                Console.WriteLine(C.indent1 + "\tLogin to Central Supply Unit System");
+                Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "Login to Central Supply Unit System");
                 Console.WriteLine(C.indent1 + "1. Manager");
                 Console.WriteLine(C.indent1 + "2. Employee");
                 Console.WriteLine(C.indent1 + "3. Employee Sign up");
@@ -26,6 +27,7 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 Console.Write(C.indent1 + "Choice:");
                 choice = Convert.ToInt32(Console.ReadLine());
+               
                 if (choice == 1)
                 {
                     Manager.SignIn(); //managerSignIn(); 
@@ -40,11 +42,21 @@ namespace CPE311_TermProject
                 {
                     Console.WriteLine("EmployeeSignUp");//EmployeeSignUp();
                 }
-                else if (choice == 4) { break; }
+                else if (choice == 4) 
+                {
+                    
+                    break; 
+                }
                 else
                 {
-                    Console.Write("Incorrect Choice, Please try again...");
+                    C.WriteLine("Incorrect Choice, Please try again...");
                 }
+            }
+            }
+            catch (Exception e)
+            {
+                C.WriteLine(e.Message + " Please try again...");
+                Login();
             }
 
         }
