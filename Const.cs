@@ -6,9 +6,11 @@ namespace CPE311_TermProject
 {
     static class C
     {
-        public static void StarPrint()
+        public static string indent1  = new String(' ', 4);
+        public static string stars = new String('*', 53);
+        public static void WriteLine(string str)
         {
-            Console.WriteLine("*****************************************************");
+            Console.WriteLine(C.indent1 + str);
         }
     }
 }
