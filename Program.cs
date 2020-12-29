@@ -6,31 +6,7 @@ namespace CPE311_TermProject
     class System
     {   
 
-       
-
-        static public void SignIn() 
-        {
-            Console.WriteLine(C.indent1 + C.stars);
-            Console.WriteLine(C.indent1 + C.stars);
-            Console.Write(C.indent1 + "Enter Username:  ");
-            String username = Console.ReadLine();
-            Console.Write(C.indent1 + "Enter Password:  ");
-            String password = Console.ReadLine();
-            if (username == "Manager" && password == "Manager") 
-            {
-                Console.WriteLine("Manager Signed In Correctly");
-            }
-            else if (username == "Manager" && password == "Manager")
-            {
-                Console.WriteLine("Manager Signed In Correctly");
-            }
-            else {
-                Console.WriteLine("Wrong Login information try again or sign up if you are not");
-            }
-        
-        }
-        static void Main(string[] args)
-           
+       static public void Login()
         {
             int choice;
 
@@ -50,9 +26,14 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 Console.Write(C.indent1 + "Choice:");
                 choice = Convert.ToInt32(Console.ReadLine());
-                if (choice == 1 || choice == 2)
+                if (choice == 1)
                 {
-                    SignIn(); //managerSignIn(); 
+                    Manager.SignIn(); //managerSignIn(); 
+                    break;
+                } 
+                else if (choice == 2)
+                {
+                    SignIn(); //employeeSignIn(); 
                     break;
                 }
                 else if (choice == 3)
@@ -66,6 +47,31 @@ namespace CPE311_TermProject
                 }
             }
 
+        }
+
+        static public void SignIn() 
+        {
+            Console.WriteLine(C.indent1 + C.stars);
+            Console.WriteLine(C.indent1 + C.stars);
+            Console.Write(C.indent1 + "Enter Username:  ");
+            String username = Console.ReadLine();
+            Console.Write(C.indent1 + "Enter Password:  ");
+            String password = Console.ReadLine();
+            if (username == "Manager" && password == "Manager") 
+            {
+                Console.WriteLine("Manager Signed In Correctly");
+            }
+            else 
+            {
+                Console.WriteLine("Wrong Login information try again or sign up if you are not");
+            }
+        
+        }
+        static void Main(string[] args)
+           
+        {
+            Manager m = new Manager("Manager", "Manager");
+            Login();
         }
     }
 }
