@@ -4,9 +4,9 @@ using System.IO;
 namespace CPE311_TermProject
 {
     class System
-    {   
-
-       static public void Login()
+    {
+        static public Employee[] arr = new Employee[100];
+        static public void Login()
         {
             try
             {
@@ -35,12 +35,40 @@ namespace CPE311_TermProject
                 } 
                 else if (choice == 2)
                 {
-                    SignIn(); //employeeSignIn(); 
-                    break;
+                        Employee.SignIn(); //employeeSignIn(); 
+                        break;
                 }
                 else if (choice == 3)
                 {
-                    Console.WriteLine("EmployeeSignUp");//EmployeeSignUp();
+                        try
+                        {
+                            
+                            // declare variables
+                            string fn, ln, un, ps;
+                            int id;
+                            //print the screen
+                            C.WriteLine(C.stars);
+                            C.WriteLine(C.stars2 + "Employee Sign Up" + C.stars3);
+                            C.WriteLine(C.stars);
+                            Console.Write(C.indent1 + "Enter First Name: ");
+                            fn = Console.ReadLine();
+                            Console.Write(C.indent1 + "Enter Last Name: ");
+                            ln = Console.ReadLine();
+                            Console.Write(C.indent1 + "Enter ID: ");
+                            id = Convert.ToInt32(Console.ReadLine());
+                            Console.Write(C.indent1 + "Enter Username: ");
+                            un = Console.ReadLine();
+                            Console.Write(C.indent1 + "Enter Password: ");
+                            ps = Console.ReadLine();
+                            arr[0] = new Employee(fn, ln, id, un, ps);
+                            // open the file and dump the object
+                            
+
+                        }
+                        catch (Exception e)
+                        {
+                            C.WriteLine("an error has occured please try again " + e.Message +"\n");
+                        }
                 }
                 else if (choice == 4) 
                 {
