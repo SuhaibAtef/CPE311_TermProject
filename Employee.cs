@@ -33,15 +33,22 @@ namespace CPE311_TermProject
             string un = Console.ReadLine();
             Console.Write(C.indent1 + "Enter Password:  ");
             string up = Console.ReadLine();
-            //Employee.employeescreen();
+            //
             // check if information are correct
-            //if they are correct move to emp screen with the object informations
+            //
+            //if they are correct move to emp screen with the object informations and return an employee object
+            //
+
+            Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
+
+            Employee.employeescreen(ew);
+            
         }
         public static void employeescreen(Employee e)
         {
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.stars);
-            Console.WriteLine(C.indent1+C.indent1+ "\t\tWELCOME "+e.fname+" "+e.lname);
+            Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "\t\tWELCOME "+e.fname+" "+e.lname);
             Console.WriteLine(C.indent1 + C.stars);
             int ch;
             C.WriteLine("1- Create Supply Document To request An Item from Warehouse");
@@ -66,6 +73,7 @@ namespace CPE311_TermProject
                     break;
                 default:
                     C.WriteLine("\nWRONG INPUT CHOICE");
+                    employeescreen(e);
                     break;
 
             }
