@@ -4,9 +4,10 @@ using System.IO;
 namespace CPE311_TermProject
 {
     class System
-    {   
-
-       static public void Login()
+    {
+        public static Warehouse[] warehouses = new Warehouse[100];
+        public static UInt32 warehouseCounter = 0;
+        static public void Login()
         {
             try
             {

@@ -140,15 +140,15 @@ namespace CPE311_TermProject
             Console.WriteLine(new String('-',60));
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
-            /*
+            
             FileStream warehouse_file=new FileStream("Warehouses.txt",FileMode.OpenOrCreate,FileAccess.Read);
             BinaryFormatter warehouse_formatter= new BinaryFormatter();
-            Warehouse[] warehouse=new Warehouse(100);
+            Warehouse[] warehouse=new Warehouse[100];
             int i=0;
             bool Flag=false;
             while(warehouse_file.Position<warehouse_file.Length){
               warehouse[i]=(Warehouse)warehouse_formatter.Deserialize(warehouse_file);
-                if (warehouse[i].Name==wName){
+                if (warehouse[i].getName()==wName){
                     Flag=true;
                 }
                 i++;
@@ -161,13 +161,15 @@ namespace CPE311_TermProject
             else
             {
                 //append
-                warehouse_file=new FileStream("Warehouses.txt",FileMode.Append,FileAccess.Write);
-                warehouse[i].SetName(wName);
-                warehouse_formatter(warehouse_file,warehouse);
+                System.warehouses[System.warehouseCounter] = new Warehouse(wName);
+                System.warehouseCounter++;
+                warehouse_file =new FileStream("Warehouses.txt",FileMode.Append,FileAccess.Write);
+                warehouse[i].setName(wName);
+                //warehouse_formatter(warehouse_file,warehouse);
                 warehouse_file.Close();
             }
             
-            */
+            
         }
 
         public static void AddItemtoWarehouse()
@@ -177,6 +179,7 @@ namespace CPE311_TermProject
 
             //
             // TO-DO:check if warehouse exists
+            
             S:
             try { 
             Console.Write(C.indent1 + "Enter item's Name:  ");
