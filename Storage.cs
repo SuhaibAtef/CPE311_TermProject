@@ -18,6 +18,18 @@ namespace CPE311_TermProject
             this.code = code;
             this.quantity = quantity;
         }
+        public UInt64 getCode()
+        {
+            return this.code;
+        }
+        public UInt64 getQuantity()
+        {
+            return this.quantity;
+        }
+        public void changeQuantity(UInt64 value)
+        {
+            this.quantity += value;
+        }
     }
 
     class Warehouse
@@ -40,11 +52,27 @@ namespace CPE311_TermProject
         }
         public void addItem(Item item)
         {
-            items.Add(item);
+            bool found=false;
+            int i = 0;
+            while (i < items.Count)
+            {
+                if (items[i].getCode() == item.getCode())
+                {
+                    items[i].changeQuantity(item.getQuantity());
+                    found = true;
+                    break;
+                }
+                i++;
+            }
+            if (!found)
+            {
+                items.Add(item);
+            }
         }
         public void deleteItem(Item item)
         {
             items.Remove(item);
         }
+      
     }
 }

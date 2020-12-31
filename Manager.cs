@@ -5,6 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 namespace CPE311_TermProject
 {
+
     class Manager 
     {
         private string username;
@@ -72,7 +73,7 @@ namespace CPE311_TermProject
                         {
                             AddItemtoWarehouse();
 
-                            //again = 'u';
+                            //again = 'y';
                             //while(again != 'Y'&& again != 'y'|| again != 'N'|| again != 'n') { 
 
                             C.WriteLine("Enter another Item (Y/N): ");
@@ -143,7 +144,7 @@ namespace CPE311_TermProject
             
             FileStream warehouse_file=new FileStream("Warehouses.txt",FileMode.OpenOrCreate,FileAccess.Read);
             BinaryFormatter warehouse_formatter= new BinaryFormatter();
-            Warehouse[] warehouse=new Warehouse[100];
+            Warehouse[] warehouse = new Warehouse[100];
             int i=0;
             bool Flag=false;
             while(warehouse_file.Position<warehouse_file.Length){
@@ -156,7 +157,8 @@ namespace CPE311_TermProject
             warehouse_file.Close();
             if (Flag)
             {
-                C.WriteLine("Warehouse already exists.");
+                C.WriteLine(C.indent1+"Warehouse already exists.");
+                
             }
             else
             {
@@ -174,38 +176,78 @@ namespace CPE311_TermProject
 
         public static void AddItemtoWarehouse()
         {
+       
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
 
             //
             // TO-DO:check if warehouse exists
-            
-            S:
-            try { 
-            Console.Write(C.indent1 + "Enter item's Name:  ");
-            string Iname = Console.ReadLine();
-            Console.Write(C.indent1 + "Enter item's Price:  ");
-            double price = Convert.ToDouble(Console.ReadLine());
-            if(price < 0)
-                {
-                    throw new FormatException(); 
-                }
-            Console.Write(C.indent1 + "Enter item's Code:  ");
-            Int64 Code = Convert.ToInt64(Console.ReadLine());
-            Console.Write(C.indent1 + "Enter item's Quantity:  ");
-            UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
-            }
-            catch 
+            FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.OpenOrCreate, FileAccess.Read);
+            BinaryFormatter warehouse_formatter = new BinaryFormatter();
+            Warehouse[] warehouse = new Warehouse[100];
+            int i = 0;
+            int ind=0;
+            bool exist = false;
+            while (warehouse_file.Position < warehouse_file.Length)
             {
-                C.WriteLine("Wrong Input,Try Again...");
-                goto S;
+                warehouse[i] = (Warehouse)warehouse_formatter.Deserialize(warehouse_file);
+                if (warehouse[i].getName() == wName)
+                {
+                    exist = true;
+                    ind = i;
+                }
+                i++;
             }
-            //
-            //
-            //if item already exist in the warehouse 
-            //adds the quantity to the existing item 
-            //else creates a new item and inserts it to the warehouse 
-            //
+            warehouse_file.Close();
+
+            if (exist == false)
+            {
+                C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
+                Console.Write(C.indent1 + "Do you want try again? (y,n)");
+                char again = (char)Console.Read();
+                if (again == 'y' || again == 'Y')
+                    AddItemtoWarehouse();
+                else if (again == 'n' || again == 'N')
+                    ManagerScreen();
+                else
+                {
+                    C.WriteLine(C.indent1 + "Wrong Input...");
+                    ManagerScreen();
+                }
+            }
+            else {
+
+                S:
+                    try {
+                        Console.Write(C.indent1 + "Enter item's Name:  ");
+                        string Iname = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter item's Price:  ");
+                        double price = Convert.ToDouble(Console.ReadLine());
+                        if (price < 0)
+                        {
+                            throw new FormatException();
+                        }
+                        Console.Write(C.indent1 + "Enter item's Code:  ");
+                        UInt64 Code = Convert.ToUInt64(Console.ReadLine());//previous --> Int64 Code =Convert.ToInt64(Console.ReadLine())---> so it made some errors with item constructor so I changed it
+                        Console.Write(C.indent1 + "Enter item's Quantity:  ");
+                        UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
+                        
+                        Item newItem = new Item(Iname, price, Code, IQuantity);
+                    warehouse[ind].addItem(newItem);
+                }
+                    catch
+                    {
+                        C.WriteLine("Wrong Input,Try Again...");
+                        goto S;
+                    }
+                
+                    //
+                    //
+                    //if item already exist in the warehouse 
+                    //adds the quantity to the existing item 
+                    //else creates a new item and inserts it to the warehouse 
+                    //
+            }
         }
     }
 }
