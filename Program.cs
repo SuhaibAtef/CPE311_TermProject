@@ -115,6 +115,9 @@ namespace CPE311_TermProject
         {
             Manager m = new Manager("Manager", "Manager");
             Login();
+            //
+            //Idea:::   Using the manager object to call functions;;
+            //
         }
     }
 }

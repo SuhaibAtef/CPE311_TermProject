@@ -164,7 +164,7 @@ namespace CPE311_TermProject
                 System.warehouses[System.warehouseCounter] = new Warehouse(wName);
                 System.warehouseCounter++;
                 warehouse_file =new FileStream("Warehouses.txt",FileMode.Append,FileAccess.Write);
-                warehouse[i].setName(wName);
+                warehouse[System.warehouseCounter].setName(wName);
                 warehouse_formatter.Serialize(warehouse_file,warehouse);
                 warehouse_file.Close();
             }
