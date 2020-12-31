@@ -16,7 +16,7 @@ namespace CPE311_TermProject
             this.password = password;
         }
 
-        public static void SignIn()
+        public void SignIn()
         {
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.stars);
@@ -26,16 +26,16 @@ namespace CPE311_TermProject
             string upass = Console.ReadLine();
             if (uname == "Manager" && upass == "Manager")
             {
-                ManagerScreen(); /// Manager Main Screen
+                ManagerScreen(this); /// Manager Main Screen
             }
             else
             {
                 C.WriteLine("Wrong Login information try again");
-                System.Login();
+                System.Login(this);
             }
         }
 
-        public static void ManagerScreen()
+        public void ManagerScreen(Manager m)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace CPE311_TermProject
                         //exit();
                         //
                     C.WriteLine("Logging Out...");
-                    System.Login();
+                    System.Login(m);
                     break;
                 }
                     else
@@ -132,10 +132,10 @@ namespace CPE311_TermProject
             catch (Exception e)
             {
                 C.WriteLine(e.Message+" Please try again...");
-                ManagerScreen();
+                ManagerScreen(m);
             }
         }
-        public static void Create_Warehouse() 
+        public void Create_Warehouse() 
         {
             Console.WriteLine(new String('-',60));
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
@@ -172,7 +172,7 @@ namespace CPE311_TermProject
             
         }
 
-        public static void AddItemtoWarehouse()
+        public void AddItemtoWarehouse()
         {
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
