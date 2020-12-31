@@ -9,7 +9,7 @@ namespace CPE311_TermProject
         public static UInt32 warehouseCounter = 0;
         static public Employee[] arr = new Employee[100];
 
-        static public void Login()
+        static public void Login(Manager m)
         {
             try
             {
@@ -21,11 +21,11 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "Login to Central Supply Unit System");
-                Console.WriteLine(C.indent1 + "1. Manager");
-                Console.WriteLine(C.indent1 + "2. Employee");
-                Console.WriteLine(C.indent1 + "3. Employee Sign up");
-                Console.WriteLine(C.indent1 + "4. Exit");
+                C.WriteLine( C.indent1 + C.indent1 + "Login to Central Supply Unit System");
+                C.WriteLine( "1. Manager");
+                C.WriteLine( "2. Employee");
+                C.WriteLine( "3. Employee Sign up");
+                C.WriteLine( "4. Exit");
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 Console.Write(C.indent1 + "Choice:");
@@ -33,7 +33,7 @@ namespace CPE311_TermProject
                
                 if (choice == 1)
                 {
-                    Manager.SignIn(); //managerSignIn(); 
+                    m.SignIn(); //managerSignIn(); 
                     break;
                 } 
                 else if (choice == 2)
@@ -87,15 +87,15 @@ namespace CPE311_TermProject
             catch (Exception e)
             {
                 C.WriteLine(e.Message + " Please try again...");
-                Login();
+                Login(m);
             }
 
         }
 
         static public void SignIn() 
         {
-            Console.WriteLine(C.indent1 + C.stars);
-            Console.WriteLine(C.indent1 + C.stars);
+            C.WriteLine( C.stars);
+            C.WriteLine( C.stars);
             Console.Write(C.indent1 + "Enter Username:  ");
             String username = Console.ReadLine();
             Console.Write(C.indent1 + "Enter Password:  ");
@@ -114,7 +114,7 @@ namespace CPE311_TermProject
            
         {
             Manager m = new Manager("Manager", "Manager");
-            Login();
+            Login(m);
             //
             //Idea:::   Using the manager object to call functions;;
             //
