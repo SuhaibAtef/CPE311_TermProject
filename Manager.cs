@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
+
 namespace CPE311_TermProject
 {
 
@@ -27,7 +26,7 @@ namespace CPE311_TermProject
             string upass = Console.ReadLine();
             if (uname == "Manager" && upass == "Manager")
             {
-                ManagerScreen(this); /// Manager Main Screen
+                ManagerScreen(); /// Manager Main Screen
             }
             else
             {
@@ -36,7 +35,7 @@ namespace CPE311_TermProject
             }
         }
 
-        public void ManagerScreen(Manager m)
+        public void ManagerScreen()
         {
             try
             {
@@ -61,6 +60,7 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
+                        //System.StoreFiles();
 
                 }
                     else if (choice == 2)
@@ -102,12 +102,17 @@ namespace CPE311_TermProject
                         //
                         //View warehouses();
                         //
-                }
+                        for (int i = 0; i < System.warehouseCounter; i++)
+                        {
+                            C.WriteLine(System.warehouses[i].getName());
+                        }
+                    }
                 else if (choice == 4)
                 {
                         //
                         //View supply documents();
                         //
+
                 }
                 else if (choice == 5)
                 {
@@ -121,7 +126,7 @@ namespace CPE311_TermProject
                         //exit();
                         //
                     C.WriteLine("Logging Out...");
-                    System.Login(m);
+                    System.Login(this);
                     break;
                 }
                     else
@@ -133,7 +138,7 @@ namespace CPE311_TermProject
             catch (Exception e)
             {
                 C.WriteLine(e.Message+" Please try again...");
-                ManagerScreen(m);
+                ManagerScreen();
             }
         }
         public void Create_Warehouse() 
@@ -141,20 +146,17 @@ namespace CPE311_TermProject
             Console.WriteLine(new String('-',60));
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
-            
-            FileStream warehouse_file=new FileStream("Warehouses.txt",FileMode.OpenOrCreate,FileAccess.Read);
-            BinaryFormatter warehouse_formatter= new BinaryFormatter();
-            Warehouse[] warehouse = new Warehouse[100];
-            int i=0;
+
             bool Flag=false;
-            while(warehouse_file.Position<warehouse_file.Length){
-              warehouse[i]=(Warehouse)warehouse_formatter.Deserialize(warehouse_file);
-                if (warehouse[i].getName()==wName){
-                    Flag=true;
+           for(int i = 0; i < System.warehouseCounter; i++)
+            {
+                if (System.warehouses[i].getName() == wName)
+                {
+                    Flag = true;
+                    break;
                 }
-                i++;
             }
-            warehouse_file.Close();
+            
             if (Flag)
             {
                 C.WriteLine(C.indent1+"Warehouse already exists.");
@@ -162,16 +164,8 @@ namespace CPE311_TermProject
             }
             else
             {
-                //append
-                System.warehouses[System.warehouseCounter] = new Warehouse(wName);
-                System.warehouseCounter++;
-                warehouse_file =new FileStream("Warehouses.txt",FileMode.Append,FileAccess.Write);
-                warehouse[System.warehouseCounter].setName(wName);
-                warehouse_formatter.Serialize(warehouse_file,warehouse);
-                warehouse_file.Close();
+                System.warehouses[System.warehouseCounter++] = new Warehouse(wName);
             }
-            
-            
         }
 
         public void AddItemtoWarehouse()
@@ -182,25 +176,8 @@ namespace CPE311_TermProject
 
             //
             // TO-DO:check if warehouse exists
-            FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.OpenOrCreate, FileAccess.Read);
-            BinaryFormatter warehouse_formatter = new BinaryFormatter();
-            Warehouse[] warehouse = new Warehouse[100];
-            int i = 0;
-            int ind=0;
-            bool exist = false;
-            while (warehouse_file.Position < warehouse_file.Length)
-            {
-                warehouse[i] = (Warehouse)warehouse_formatter.Deserialize(warehouse_file);
-                if (warehouse[i].getName() == wName)
-                {
-                    exist = true;
-                    ind = i;
-                }
-                i++;
-            }
-            warehouse_file.Close();
-
-            if (exist == false)
+            
+            if (wName.Length > 5)
             {
                 C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
                 Console.Write(C.indent1 + "Do you want try again? (y,n)");
@@ -233,7 +210,7 @@ namespace CPE311_TermProject
                         UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
                         
                         Item newItem = new Item(Iname, price, Code, IQuantity);
-                    warehouse[ind].addItem(newItem);
+                    
                 }
                     catch
                     {

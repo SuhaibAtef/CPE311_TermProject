@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CPE311_TermProject
 {
@@ -7,9 +8,9 @@ namespace CPE311_TermProject
     {
         public static Warehouse[] warehouses = new Warehouse[100];
         public static UInt32 warehouseCounter = 0;
-        static public Employee[] arr = new Employee[100];
-
-        static public void Login(Manager m)
+        static public Employee[] employees = new Employee[100];
+        public static UInt32 employeeCounter = 0;
+        static public void Login(object m)
         {
             try
             {
@@ -33,7 +34,7 @@ namespace CPE311_TermProject
                
                 if (choice == 1)
                 {
-                    m.SignIn(); //managerSignIn(); 
+                    ((Manager)m).SignIn(); //managerSignIn(); 
                     break;
                 } 
                 else if (choice == 2)
@@ -63,7 +64,7 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            arr[0] = new Employee(fn, ln, id, un, ps);
+                            employees[0] = new Employee(fn, ln, id, un, ps);
                             // open the file and dump the object
                             
 
@@ -110,10 +111,24 @@ namespace CPE311_TermProject
             }
         
         }
+
+        static public void loadFiles()
+        {
+            FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.OpenOrCreate, FileAccess.Read);
+            BinaryFormatter warehouse_formatter = new BinaryFormatter();
+
+            warehouse_file.Close();
+        }
+
+        static public void StoreFiles()
+        {
+
+        }
         static void Main(string[] args)
            
         {
             Manager m = new Manager("Manager", "Manager");
+            //loadFiles();
             Login(m);
             //
             //Idea:::   Using the manager object to call functions;;
