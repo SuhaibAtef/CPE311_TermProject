@@ -8,6 +8,7 @@ namespace CPE311_TermProject
         public static Warehouse[] warehouses = new Warehouse[100];
         public static UInt32 warehouseCounter = 0;
         static public Employee[] arr = new Employee[100];
+        public static UInt32 employeeCounter = 0;
 
         static public void Login()
         {
@@ -63,9 +64,9 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            arr[0] = new Employee(fn, ln, id, un, ps);
+                            arr[employeeCounter] = new Employee(fn, ln, id, un, ps);
                             // open the file and dump the object
-                            
+                            // increment the counter by 1
 
                         }
                         catch (Exception e)
