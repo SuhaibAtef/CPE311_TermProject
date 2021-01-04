@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace CPE311_TermProject
 {
@@ -7,10 +8,9 @@ namespace CPE311_TermProject
     {
         public static Warehouse[] warehouses = new Warehouse[100];
         public static UInt32 warehouseCounter = 0;
-        static public Employee[] arr = new Employee[100];
+        static public Employee[] employees = new Employee[100];
         public static UInt32 employeeCounter = 0;
-
-        static public void Login()
+        static public void Login(object m)
         {
             try
             {
@@ -22,11 +22,11 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "Login to Central Supply Unit System");
-                Console.WriteLine(C.indent1 + "1. Manager");
-                Console.WriteLine(C.indent1 + "2. Employee");
-                Console.WriteLine(C.indent1 + "3. Employee Sign up");
-                Console.WriteLine(C.indent1 + "4. Exit");
+                C.WriteLine( C.indent1 + C.indent1 + "Login to Central Supply Unit System");
+                C.WriteLine( "1. Manager");
+                C.WriteLine( "2. Employee");
+                C.WriteLine( "3. Employee Sign up");
+                C.WriteLine( "4. Exit");
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 Console.Write(C.indent1 + "Choice:");
@@ -34,7 +34,7 @@ namespace CPE311_TermProject
                
                 if (choice == 1)
                 {
-                    Manager.SignIn(); //managerSignIn(); 
+                    ((Manager)m).SignIn(); //managerSignIn(); 
                     break;
                 } 
                 else if (choice == 2)
@@ -64,9 +64,9 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            arr[employeeCounter] = new Employee(fn, ln, id, un, ps);
+                            employees[0] = new Employee(fn, ln, id, un, ps);
                             // open the file and dump the object
-                            // increment the counter by 1
+                            
 
                         }
                         catch (Exception e)
@@ -88,15 +88,15 @@ namespace CPE311_TermProject
             catch (Exception e)
             {
                 C.WriteLine(e.Message + " Please try again...");
-                Login();
+                Login(m);
             }
 
         }
 
         static public void SignIn() 
         {
-            Console.WriteLine(C.indent1 + C.stars);
-            Console.WriteLine(C.indent1 + C.stars);
+            C.WriteLine( C.stars);
+            C.WriteLine( C.stars);
             Console.Write(C.indent1 + "Enter Username:  ");
             String username = Console.ReadLine();
             Console.Write(C.indent1 + "Enter Password:  ");
@@ -111,11 +111,28 @@ namespace CPE311_TermProject
             }
         
         }
+
+        static public void loadFiles()
+        {
+            FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.OpenOrCreate, FileAccess.Read);
+            BinaryFormatter warehouse_formatter = new BinaryFormatter();
+
+            warehouse_file.Close();
+        }
+
+        static public void StoreFiles()
+        {
+
+        }
         static void Main(string[] args)
            
         {
             Manager m = new Manager("Manager", "Manager");
-            Login();
+            //loadFiles();
+            Login(m);
+            //
+            //Idea:::   Using the manager object to call functions;;
+            //
         }
     }
 }
