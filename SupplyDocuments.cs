@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CPE311_TermProject
 {
+    [Serializable]
     class SupplyDocuments
     {
         private string warehouseName;
@@ -11,37 +12,37 @@ namespace CPE311_TermProject
         private int itemCode;
         private int itemQuantity;
         private int type;
-        string date;
+        DateTime date;
         private string senderUsername;
         private string recieverUsername;
         private int receiverId;
 
-        public SupplyDocuments(string warehouseNam, string itemName, int itemCode, int itemQuantity, string date, string senderUsername, int type=1)
+        public SupplyDocuments(int type, string itemName, int itemCode, int itemQuantity, string senderUsername, string warehouseName="", string recieverUsername="", int receiverId=0)
         {
+            this.itemName = itemName;
+            this.itemCode = itemCode;
+            this.itemQuantity = itemQuantity;
+            this.senderUsername = senderUsername;
+            this.date = DateTime.Now;
+            this.type = type;
+
+            if (type == 1 || type == 3)
+            {
+
+                this.warehouseName = warehouseName; 
+            }
+            else
+            {
+                this.recieverUsername = recieverUsername;
+                this.receiverId = receiverId;
+            }
             
-            this.warehouseName = warehouseName;
-            this.itemName = itemName;
-            this.itemCode = itemCode;
-            this.itemQuantity = itemQuantity;
-            this.date = date;
-            this.senderUsername = senderUsername;
-            this.type = type;
-
 
         }
-        public SupplyDocuments(string itemName, int itemCode, int itemQuantity, string date, string senderUsername,string recieverUsername,int receiverId, int type = 2)
+       public DateTime getDate()
         {
-            this.itemName = itemName;
-            this.itemCode = itemCode;
-            this.itemQuantity = itemQuantity;
-            this.date = date;
-            this.senderUsername = senderUsername;
-            this.type = type;
-            this.recieverUsername = recieverUsername;
-            this.receiverId = receiverId;
-
+            return date;
         }
-
 
 
 

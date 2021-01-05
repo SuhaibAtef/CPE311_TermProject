@@ -103,7 +103,7 @@ namespace CPE311_TermProject
                             case 'Y':
                             case 'y':
                                 string d = DateTime.Now.ToString();
-                                SupplyDocuments supply = new SupplyDocuments(wn, In, Ic, Iq,d,e.username );
+                                SupplyDocuments supply = new SupplyDocuments(1,In,Ic,Iq,e.username,wn);
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
@@ -111,7 +111,7 @@ namespace CPE311_TermProject
                                 Thread.Sleep(5000);
                                 Console.Clear();
                                 goto sure;
-                                break;
+                                
                             case 'n':
                             case 'N':
                                 C.WriteLine("1- Enter information again?");
@@ -170,7 +170,7 @@ namespace CPE311_TermProject
                             case 'Y':
                             case 'y':
                                 string d = DateTime.Now.ToString();
-                                SupplyDocuments supply2 = new SupplyDocuments(Iname, Icode, Iquantity, d, e.username, un, Id);
+                                SupplyDocuments supply2 = new SupplyDocuments(2,Iname,Icode,Iquantity,e.username,"ebl3",un,Id);
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
@@ -178,7 +178,7 @@ namespace CPE311_TermProject
                                 Thread.Sleep(5000);
                                 Console.Clear();
                                 goto sure;
-                                break;
+                                
                             case 'n':
                             case 'N':
                                 Console.Write(C.indent1 + "1- Enter information again? :");
@@ -238,7 +238,7 @@ namespace CPE311_TermProject
                             case 'Y':
                             case 'y':
                                 string d = DateTime.Now.ToString();
-                                SupplyDocuments supply2 = new SupplyDocuments(wn2, In2, Ic2, Iq2, d, e.username, 3);
+                                SupplyDocuments supply2 = new SupplyDocuments(3,In2,Ic2,Iq2,e.username,wn2);
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
@@ -246,7 +246,7 @@ namespace CPE311_TermProject
                                 Thread.Sleep(5000);
                                 Console.Clear();
                                 goto sure;
-                                break;
+                                
                             case 'n':
                             case 'N':
                                 Console.Write(C.indent1 + "1- Enter information again? :");

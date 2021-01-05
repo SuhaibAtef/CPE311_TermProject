@@ -175,8 +175,7 @@ namespace CPE311_TermProject
             {
                 formatter.Serialize(warehouse_file, employees[i]);
             }
-            //formatter.Serialize(warehouse_file, warehouses);
-            //formatter.Serialize(employee_file, employees);
+          
             warehouse_file.Close();
             employee_file.Close();
         }

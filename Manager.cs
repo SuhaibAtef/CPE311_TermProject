@@ -76,6 +76,7 @@ namespace CPE311_TermProject
                         //
                         //View warehouses();
                         //
+                        Console.Clear();
                         for (int i = 0; i < System.warehouseCounter; i++)
                         {
                             System.warehouses[i].viewWarehouse();
