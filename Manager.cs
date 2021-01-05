@@ -95,6 +95,25 @@ namespace CPE311_TermProject
                         //
                         //Delete old supply Documents();
                         //
+                        DateTime today = DateTime.Now;
+                        bool deleteSupply = false;
+                        for(int i = 0; i< System.supplyDocuments.Count;i++)
+                        {
+                            DateTime d = System.supplyDocuments[i].getDate();
+                            if(d.Subtract(today).TotalDays > 180)
+                            {
+                                deleteSupply = true; 
+                                System.supplyDocuments.Remove(System.supplyDocuments[i]);
+                            } 
+                        }
+                        if (!deleteSupply)
+                        {
+                            C.WriteLine("There is no supply documents to delete");
+                        }
+                        else
+                        {
+                            C.WriteLine("all the supply documents that have been created before six months were deleted. ");
+                        }
                         //System.StoreFiles();
 
                     }

@@ -43,8 +43,13 @@ namespace CPE311_TermProject
         {
             return date;
         }
-
-
+        /// <summary>
+        /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
+        /// </summary>
+        public void changeTime(int x)
+        {
+            date = date.AddDays(x);
+        } 
 
     }
    

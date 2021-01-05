@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,9 +12,9 @@ namespace CPE311_TermProject
     {
         public static Warehouse[] warehouses = new Warehouse[100];
         public static UInt32 warehouseCounter = 0;
-        static public Employee[] employees = new Employee[100];
+        public static Employee[] employees = new Employee[100];
         public static UInt32 employeeCounter = 0;
-        
+        public static List<SupplyDocuments> supplyDocuments = new List<SupplyDocuments>();
         static public void Login(object m)
         {
             try
@@ -128,6 +129,8 @@ namespace CPE311_TermProject
         {
             FileStream warehouse_file;
             FileStream employee_file;
+            FileStream supplyDocuments_file;
+
             BinaryFormatter formatter = new BinaryFormatter();
             if (File.Exists("Warehouses.txt"))
             {
@@ -160,12 +163,30 @@ namespace CPE311_TermProject
                 employee_file = new FileStream("Employees.txt", FileMode.Create);
             }
             employee_file.Close();
+
+
+            if (File.Exists("SupplyDocuments.txt"))
+            {
+                supplyDocuments_file = new FileStream("SupplyDocuments.txt", FileMode.Open, FileAccess.Read);
+                int supplyDocumentsCounter = 0;
+                while (supplyDocuments_file.Position < supplyDocuments_file.Length)
+                {
+                    supplyDocuments[supplyDocumentsCounter++] = (SupplyDocuments)formatter.Deserialize(supplyDocuments_file);
+                }
+
+            }
+            else
+            {
+                supplyDocuments_file = new FileStream("SupplyDocuments.txt", FileMode.Create);
+            }
+            supplyDocuments_file.Close();
         }
 
         static public void StoreFiles()
         {
             FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.Create, FileAccess.Write);
             FileStream employee_file = new FileStream("Employees.txt", FileMode.Create, FileAccess.Write);
+            FileStream supplyDocuments_file = new FileStream("SupplyDocuments.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter formatter = new BinaryFormatter();
             for(int i =0; i < warehouseCounter; i++)
             {
@@ -173,16 +194,25 @@ namespace CPE311_TermProject
             }
             for (int i = 0; i < employeeCounter; i++)
             {
-                formatter.Serialize(warehouse_file, employees[i]);
+                formatter.Serialize(employee_file, employees[i]);
             }
-          
+            for (int i = 0; i < supplyDocuments.Count; i++)
+            {
+                formatter.Serialize(supplyDocuments_file, supplyDocuments[i]);
+            }
+            
             warehouse_file.Close();
             employee_file.Close();
+            supplyDocuments_file.Close();
         }
         static void Main(string[] args)
            
         {
-            
+            /// <summary>
+            /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
+            /// </summary>
+            supplyDocuments.Add(new SupplyDocuments(1, "something", 25, 30, "suhaib", "h"));
+            supplyDocuments[0].changeTime(181);
             Manager m = new Manager("Manager", "Manager");
             loadFiles();
             Login(m);
