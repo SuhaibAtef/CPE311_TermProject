@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace CPE311_TermProject
 {
@@ -11,6 +13,7 @@ namespace CPE311_TermProject
         private int id;
         private string username;
         private string password;
+        private Item[] items;
         public Employee(string fname, string lname, int id, string username, string password)
         {
             this.fname = fname;
@@ -21,9 +24,6 @@ namespace CPE311_TermProject
 
         }
      
-       // public static void SignUp(string fname, string lname, int id, string username, string password)
-        //{
-        //}
         public static  void SignIn()
         {
 
@@ -46,6 +46,7 @@ namespace CPE311_TermProject
         }
         public static void employeescreen(Employee e)
         {
+            sure:
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "\t\tWELCOME "+e.fname+" "+e.lname);
@@ -63,11 +64,204 @@ namespace CPE311_TermProject
             switch (ch)
             {
                 case 1:
+                    Console.Clear();
+                    C.WriteLine(C.stars);
+                    C.WriteLine(C.stars4 +C.indent1+ e.fname + " " + e.lname + C.indent1+"      userName: " + e.username + C.indent1+"    ID: " + e.id+C.indent1 + C.stars4);
+                    C.WriteLine(C.stars);
+                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
+                    C.WriteLine(C.stars);
+                    //foreach(Item i in e.items)
+                    //{
+                        //
+                        //print the items for the employee
+                        //
+                    //} 
+                    Console.WriteLine("\n\n\n");
+                    //
+                    // print all warehaouses and items in it
+                    //
+                    C.WriteLine("--------------------------------------------------------");
+                    bool flag = true;
                     
+                    while (flag)
+                    {
+                        
+                        Console.Write(C.indent1+"Enter warhouse name :");
+                        string wn = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter Item name :");
+                        string In = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter item code :");
+                        int Ic = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Enter  Quantity :");
+                        int Iq = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Are you sure Y/N : ");
+                        char s = Convert.ToChar(Console.ReadLine());
+
+                        switch (s)
+                        {
+                            case 'Y':
+                            case 'y':
+                                string d = DateTime.Now.ToString();
+                                SupplyDocuments supply = new SupplyDocuments(wn, In, Ic, Iq,d,e.username );
+                                //
+                                // ADD THE SUPPLY DOCUMENT
+                                //
+                                C.WriteLine("Supply document created ");
+                                Thread.Sleep(5000);
+                                Console.Clear();
+                                goto sure;
+                                break;
+                            case 'n':
+                            case 'N':
+                                C.WriteLine("1- Enter information again?");
+                                C.WriteLine("2- Exist to your main screen");
+                                Console.Write(C.indent1 + "ENTER YOU CHOICE : ");
+                                int c = Convert.ToInt32(Console.ReadLine());
+                                if (c == 1)
+                                    continue;
+                                else
+                                    Console.Clear();
+                                    employeescreen(e);
+                                break;
+
+                        }
+                    }
                     break;
                 case 2:
-                    break;
-                case 3:
+                    Console.Clear();
+                    C.WriteLine(C.stars);
+                    C.WriteLine(C.stars4 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars4);
+                    C.WriteLine(C.stars);
+                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
+                    C.WriteLine(C.stars);
+                    //foreach(Item i in e.items)
+                    //{
+                    //
+                    //print the items for the employee
+                    //
+                    //} 
+                    Console.WriteLine("\n\n\n");
+                    //
+                    // print all warehaouses and items in it
+                    //
+                    C.WriteLine("--------------------------------------------------------");
+                 
+                    bool flag2 = true;
+
+                    while (flag2)
+                    {
+
+                        Console.Write(C.indent1 + "Enter Item name :");
+                        string Iname = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter code Number :");
+                        int Icode = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Enter  Quantity :");
+                        int Iquantity = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Enter Username of the employee :");
+                        string un = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter employee Id :");
+                        int Id = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Are you sure Y/N :");
+                        char check = Convert.ToChar(Console.ReadLine());
+
+                        switch (check)
+                        {
+                            case 'Y':
+                            case 'y':
+                                string d = DateTime.Now.ToString();
+                                SupplyDocuments supply2 = new SupplyDocuments(Iname, Icode, Iquantity, d, e.username, un, Id);
+                                //
+                                // ADD THE SUPPLY DOCUMENT
+                                //
+                                C.WriteLine("Supply document created ");
+                                Thread.Sleep(5000);
+                                Console.Clear();
+                                goto sure;
+                                break;
+                            case 'n':
+                            case 'N':
+                                Console.Write(C.indent1 + "1- Enter information again? :");
+                                Console.Write(C.indent1 + "2- Exist to your main screen :");
+                                Console.Write(C.indent1 + "ENTER YOU CHOICE :");
+                                int c = Convert.ToInt32(Console.ReadLine());
+                                if (c == 1)
+                                    continue;
+                                else
+                                    Console.Clear();
+                                employeescreen(e);
+                                break;
+
+                        }
+
+
+
+                    }
+
+                        break;
+                   case 3:
+                    Console.Clear();
+                    C.WriteLine(C.stars);
+                    C.WriteLine(C.stars4 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars4);
+                    C.WriteLine(C.stars);
+                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
+                    C.WriteLine(C.stars);
+                    //foreach(Item i in e.items)
+                    //{
+                    //
+                    //print the items for the employee
+                    //
+                    //} 
+                    Console.WriteLine("\n\n\n");
+                    //
+                    // print all warehaouses and items in it
+                    //
+                    C.WriteLine("--------------------------------------------------------");
+
+                    bool flag3 = true;
+
+                    while (flag3)
+                    {
+                        Console.Write(C.indent1 + "Enter warhouse name :");
+                        string wn2 = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter Item name :");
+                        string In2 = Console.ReadLine();
+                        Console.Write(C.indent1 + "Enter code Number :");
+                        int Ic2 = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Enter  Quantity : ");
+                        int Iq2 = Convert.ToInt32(Console.ReadLine());
+                        Console.Write(C.indent1 + "Are you sure Y/N :");
+                        char check = Convert.ToChar(Console.ReadLine());
+
+                        switch (check)
+                        {
+                            case 'Y':
+                            case 'y':
+                                string d = DateTime.Now.ToString();
+                                SupplyDocuments supply2 = new SupplyDocuments(wn2, In2, Ic2, Iq2, d, e.username, 3);
+                                //
+                                // ADD THE SUPPLY DOCUMENT
+                                //
+                                C.WriteLine("Supply document created ");
+                                Thread.Sleep(5000);
+                                Console.Clear();
+                                goto sure;
+                                break;
+                            case 'n':
+                            case 'N':
+                                Console.Write(C.indent1 + "1- Enter information again? :");
+                                Console.Write(C.indent1 + "2- Exist to your main screen :");
+                                Console.Write(C.indent1 + "ENTER YOU CHOICE :");
+                                int c = Convert.ToInt32(Console.ReadLine());
+                                if (c == 1)
+                                    continue;
+                                else
+                                    Console.Clear();
+                                employeescreen(e);
+                                break;
+
+                        }
+                       
+                    }
                     break;
                 case 4:
                     System.Login(e);

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 namespace CPE311_TermProject
 {
@@ -19,6 +22,9 @@ namespace CPE311_TermProject
             int choice;
             while (true)
             {
+
+
+                Console.Clear();
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
@@ -39,11 +45,13 @@ namespace CPE311_TermProject
                 } 
                 else if (choice == 2)
                 {
+                        Console.Clear();
                         Employee.SignIn(); //employeeSignIn(); 
                         break;
                 }
                 else if (choice == 3)
                 {
+                        Console.Clear();
                         try
                         {
                             
@@ -64,9 +72,12 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            employees[0] = new Employee(fn, ln, id, un, ps);
+                            employees[employeeCounter] = new Employee(fn, ln, id, un, ps);
+
+
+                            //
                             // open the file and dump the object
-                            
+                            //
 
                         }
                         catch (Exception e)
@@ -127,6 +138,7 @@ namespace CPE311_TermProject
         static void Main(string[] args)
            
         {
+            
             Manager m = new Manager("Manager", "Manager");
             //loadFiles();
             Login(m);
