@@ -39,10 +39,27 @@ namespace CPE311_TermProject
             //
             //if they are correct move to emp screen with the object informations and return an employee object
             //
-
-            Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
-
-            Employee.employeescreen(ew);
+            bool exist = false;
+            int i = 0;
+            while (i < System.employeeCounter)
+            {
+                if (System.employees[i].username == un && System.employees[i].password == up)
+                {
+                    exist = true;
+                    break;
+                }
+            }
+            if (exist)
+            {
+                employeescreen(System.employees[i]);
+            }
+            else
+            {
+                C.WriteLine("username or password was wrong...");
+            }
+           // Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
+           // System.employees[System.employeeCounter++] = ew;
+           // employeescreen(ew);
             
         }
         public static void employeescreen(Employee e)
