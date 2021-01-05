@@ -50,9 +50,9 @@ using [StarUML Software](https://staruml.io/download).
 using [StarUML Software](https://staruml.io/download). 
 
 # Contributors
-- **@nezarsalahat29** - Nezar Al-Salahat.
-- **@Rami2025** - Rami Haidar
-- **@SuhaibAtef** - Suhaib Atef.
+- Nezar Al-Salahat - **@nezarsalahat29**.
+- Rami Haidar - **@Rami2025**.
+- Suhaib Atef - **@SuhaibAtef**.
 
 # License 
 [MIT License.](https://choosealicense.com/licenses/mit/)
