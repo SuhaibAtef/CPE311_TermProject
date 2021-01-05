@@ -60,7 +60,7 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
-                        //System.StoreFiles();
+                        
 
                 }
                     else if (choice == 2)
@@ -68,7 +68,7 @@ namespace CPE311_TermProject
                         //Add item warehouse(); 
                         C.WriteLine(C.stars + "\n");
                         AddItemtoWarehouse();
-                        //System.StoreFiles();
+                        System.StoreFiles();
 
                     }
                     else if (choice == 3)
@@ -103,7 +103,7 @@ namespace CPE311_TermProject
                         //exit();
                         //
                     C.WriteLine("Logging Out...");
-                    //System.StoreFiles();
+                    System.StoreFiles();
                     System.Login(this);
                     break;
                 }
@@ -143,7 +143,10 @@ namespace CPE311_TermProject
             else
             {
                 System.warehouses[System.warehouseCounter++] = new Warehouse(wName);
+                System.StoreFiles();
             }
+
+
         }
 
         public void AddItemtoWarehouse()
