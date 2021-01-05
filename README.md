@@ -19,12 +19,12 @@ To apply what we have learned in the Object Oriented Software Analysis & Design 
 - Microsoft Visual Studio.
 - C# SDK.
 
-##Installation
+## Installation
 
 1. Just clone the project using git or download the code.
 2. Open the solution file.
 
-##Designing steps
+## Designing steps
 
 - Created a **UML Case Diagram**.  
 - Created a **UML Case Description**.
@@ -49,10 +49,10 @@ using [StarUML Software](https://staruml.io/download).
 
 using [StarUML Software](https://staruml.io/download). 
 
-#Contributors
+# Contributors
 - **@nezarsalahat29** - Nezar Al-Salahat.
 - **@Rami2025** - Rami Haidar
 - **@SuhaibAtef** - Suhaib Atef.
 
-#License 
+# License 
 [MIT License.](https://choosealicense.com/licenses/mit/)
