@@ -12,7 +12,7 @@ namespace CPE311_TermProject
         public static string stars2 = new String('*', 18);
         public static string stars3 = new String('*', 19);
         public static string stars4 = new String('*', 10);
-
+        public static string stars5= new String('*', 5);
         public static void WriteLine(string str)
         {
             Console.WriteLine(C.indent1 + str);

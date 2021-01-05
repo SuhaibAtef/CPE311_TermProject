@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 namespace CPE311_TermProject
 {
@@ -20,6 +23,9 @@ namespace CPE311_TermProject
             int choice;
             while (true)
             {
+
+
+                Console.Clear();
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
@@ -40,11 +46,13 @@ namespace CPE311_TermProject
                 } 
                 else if (choice == 2)
                 {
+                        Console.Clear();
                         Employee.SignIn(); //employeeSignIn(); 
                         break;
                 }
                 else if (choice == 3)
                 {
+                        Console.Clear();
                         try
                         {
                             
@@ -65,9 +73,12 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            employees[0] = new Employee(fn, ln, id, un, ps);
+                            employees[employeeCounter] = new Employee(fn, ln, id, un, ps);
+
+
+                            //
                             // open the file and dump the object
-                            
+                            //
 
                         }
                         catch (Exception e)
@@ -121,9 +132,10 @@ namespace CPE311_TermProject
             if (File.Exists("Warehouses.txt"))
             {
                 warehouse_file = new FileStream("Warehouses.txt", FileMode.Open, FileAccess.Read);
+                warehouseCounter = 0;
                 while (warehouse_file.Position < warehouse_file.Length)
                 {
-                    warehouses[warehouseCounter++] = (Warehouse)formatter.Deserialize(warehouse_file);
+                    warehouses[warehouseCounter++] = (Warehouse)(formatter.Deserialize(warehouse_file));
                 }
             }
             else
@@ -131,9 +143,12 @@ namespace CPE311_TermProject
                     warehouse_file = new FileStream("Warehouses.txt", FileMode.Create);
             }
             warehouse_file.Close();
+
+
             if (File.Exists("Employees.txt"))
             {
                 employee_file = new FileStream("Employees.txt", FileMode.Open, FileAccess.Read);
+                employeeCounter = 0;
                 while (employee_file.Position < employee_file.Length)
                 {
                     employees[employeeCounter++] = (Employee)formatter.Deserialize(employee_file);
@@ -152,16 +167,25 @@ namespace CPE311_TermProject
             FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.Create, FileAccess.Write);
             FileStream employee_file = new FileStream("Employees.txt", FileMode.Create, FileAccess.Write);
             BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(warehouse_file, warehouses);
-            formatter.Serialize(employee_file, employees);
+            for(int i =0; i < warehouseCounter; i++)
+            {
+                formatter.Serialize(warehouse_file, warehouses[i]);
+            }
+            for (int i = 0; i < employeeCounter; i++)
+            {
+                formatter.Serialize(warehouse_file, employees[i]);
+            }
+            //formatter.Serialize(warehouse_file, warehouses);
+            //formatter.Serialize(employee_file, employees);
             warehouse_file.Close();
             employee_file.Close();
         }
         static void Main(string[] args)
            
         {
+            
             Manager m = new Manager("Manager", "Manager");
-            //loadFiles();
+            loadFiles();
             Login(m);
             //
             //Idea:::   Using the manager object to call functions;;
