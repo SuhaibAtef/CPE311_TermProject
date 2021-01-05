@@ -148,7 +148,7 @@ namespace CPE311_TermProject
             string wName = Console.ReadLine();
 
             bool Flag=false;
-           for(int i = 0; i < System.warehouseCounter; i++)
+            for(int i = 0; i < System.warehouseCounter; i++)
             {
                 if (System.warehouses[i].getName() == wName)
                 {
@@ -160,7 +160,6 @@ namespace CPE311_TermProject
             if (Flag)
             {
                 C.WriteLine(C.indent1+"Warehouse already exists.");
-                
             }
             else
             {
@@ -173,11 +172,19 @@ namespace CPE311_TermProject
        
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
-
+            int i = 0;
             //
             // TO-DO:check if warehouse exists
-            
-            if (wName.Length > 5)
+            bool exist = false;
+            for (; i < System.warehouseCounter; i++)
+            {
+                if (System.warehouses[i].getName() == wName)
+                {
+                    exist = true;
+                    break;
+                }
+            }
+            if (!exist)
             {
                 C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
                 Console.Write(C.indent1 + "Do you want try again? (y,n)");
@@ -210,8 +217,9 @@ namespace CPE311_TermProject
                         UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
                         
                         Item newItem = new Item(Iname, price, Code, IQuantity);
+                        System.warehouses[i].addItem(newItem);
                     
-                }
+                    }
                     catch
                     {
                         C.WriteLine("Wrong Input,Try Again...");
