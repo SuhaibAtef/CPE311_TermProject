@@ -11,6 +11,7 @@ namespace CPE311_TermProject
         public static string stars = new String('*', 66);
         public static string stars2 = new String('*', 18);
         public static string stars3 = new String('*', 19);
+        public static string stars4 = new String('*', 10);
 
         public static void WriteLine(string str)
         {

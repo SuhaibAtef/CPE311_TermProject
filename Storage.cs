@@ -31,6 +31,10 @@ namespace CPE311_TermProject
         {
             this.quantity += value;
         }
+        public void print()
+        {
+            C.WriteLine(name+new string(' ',28-name.Length)+ code + "\t"+ price + "\t"+ quantity);
+        }
     }
     [Serializable]
     class Warehouse
@@ -74,6 +78,20 @@ namespace CPE311_TermProject
         {
             items.Remove(item);
         }
-      
+        public void viewWarehouse()
+        {
+            C.WriteLine(C.stars);
+            C.WriteLine(C.stars4+new string(' ',(38-name.Length)/2)+"Warhouse "+name+ new string(' ', (38 - name.Length) / 2) + C.stars4);
+            C.WriteLine(C.stars);
+            C.WriteLine("Title\t\t\tCode\tPrice\tQuantity");
+            int i = 0;
+            while (i < items.Count)
+            {
+                items[i].print();
+                i++;
+            }
+        }
     }
+
+    
 }

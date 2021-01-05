@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CPE311_TermProject
 {
+    [Serializable]
     class Employee
     {
         private string fname;
