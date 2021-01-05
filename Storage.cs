@@ -33,7 +33,7 @@ namespace CPE311_TermProject
         }
         public void print()
         {
-            C.WriteLine(name+"\t\t\t"+ code + "\t"+ price + "\t"+ quantity);
+            C.WriteLine(name+new string(' ',28-name.Length)+ code + "\t"+ price + "\t"+ quantity);
         }
     }
     [Serializable]
@@ -81,7 +81,7 @@ namespace CPE311_TermProject
         public void viewWarehouse()
         {
             C.WriteLine(C.stars);
-            C.WriteLine(C.stars4+"Warhouse "+name+C.stars4);
+            C.WriteLine(C.stars4+new string(' ',(38-name.Length)/2)+"Warhouse "+name+ new string(' ', (38 - name.Length) / 2) + C.stars4);
             C.WriteLine(C.stars);
             C.WriteLine("Title\t\t\tCode\tPrice\tQuantity");
             int i = 0;
@@ -92,4 +92,6 @@ namespace CPE311_TermProject
             }
         }
     }
+
+    
 }

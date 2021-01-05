@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CPE311_TermProject
 {
-
+    [Serializable]
     class Manager 
     {
         private string username;
@@ -60,7 +60,6 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
-                        
                         //System.StoreFiles();
 
                 }
@@ -79,7 +78,7 @@ namespace CPE311_TermProject
                         //
                         for (int i = 0; i < System.warehouseCounter; i++)
                         {
-                            C.WriteLine(System.warehouses[i].getName());
+                            System.warehouses[i].viewWarehouse();
                         }
                     }
                 else if (choice == 4)
@@ -87,20 +86,24 @@ namespace CPE311_TermProject
                         //
                         //View supply documents();
                         //
+                        //System.StoreFiles();
 
-                }
-                else if (choice == 5)
+                    }
+                    else if (choice == 5)
                 {
                         //
                         //Delete old supply Documents();
                         //
-                }
-                else if (choice == 6)
+                        //System.StoreFiles();
+
+                    }
+                    else if (choice == 6)
                 {
                         //
                         //exit();
                         //
                     C.WriteLine("Logging Out...");
+                    //System.StoreFiles();
                     System.Login(this);
                     break;
                 }

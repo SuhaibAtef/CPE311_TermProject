@@ -10,6 +10,7 @@ namespace CPE311_TermProject
         public static UInt32 warehouseCounter = 0;
         static public Employee[] employees = new Employee[100];
         public static UInt32 employeeCounter = 0;
+        
         static public void Login(object m)
         {
             try
@@ -160,7 +161,7 @@ namespace CPE311_TermProject
            
         {
             Manager m = new Manager("Manager", "Manager");
-            loadFiles();
+            //loadFiles();
             Login(m);
             //
             //Idea:::   Using the manager object to call functions;;
