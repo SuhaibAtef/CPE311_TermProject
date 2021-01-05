@@ -169,7 +169,6 @@ namespace CPE311_TermProject
 
         public void AddItemtoWarehouse()
         {
-       
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
             int i = 0;
