@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE311_TermProject
 {
+    [Serializable]
     class Employee
     {
         private string fname;
