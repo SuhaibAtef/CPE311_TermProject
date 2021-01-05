@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CPE311_TermProject
 {
+    [Serializable]
     class Item
     {
         private string name;
@@ -31,7 +32,7 @@ namespace CPE311_TermProject
             this.quantity += value;
         }
     }
-
+    [Serializable]
     class Warehouse
     {
         private string name;
