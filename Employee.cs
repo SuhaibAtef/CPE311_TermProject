@@ -67,7 +67,7 @@ namespace CPE311_TermProject
                 case 1:
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars4 +C.indent1+ e.fname + " " + e.lname + C.indent1+"      userName: " + e.username + C.indent1+"    ID: " + e.id+C.indent1 + C.stars4);
+                    C.WriteLine(C.stars5 +C.indent1+ e.fname + " " + e.lname + C.indent1+"      userName: " + e.username + C.indent1+"    ID: " + e.id+C.indent1 + C.stars5);
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -131,7 +131,7 @@ namespace CPE311_TermProject
                 case 2:
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars4 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars4);
+                    C.WriteLine(C.stars5 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars5);
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -202,7 +202,7 @@ namespace CPE311_TermProject
                    case 3:
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars4 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars4);
+                    C.WriteLine(C.stars5 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars5);
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
