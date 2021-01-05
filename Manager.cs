@@ -60,44 +60,19 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
+                        
                         //System.StoreFiles();
 
                 }
                     else if (choice == 2)
                 {
                         //Add item warehouse(); 
-                        C.WriteLine(C.stars+"\n");
-                        bool loop = false;
-                        char again; 
-                        do
-                        {
-                            AddItemtoWarehouse();
+                        C.WriteLine(C.stars + "\n");
+                        AddItemtoWarehouse();
+                        //System.StoreFiles();
 
-                            //again = 'y';
-                            //while(again != 'Y'&& again != 'y'|| again != 'N'|| again != 'n') { 
-
-                            C.WriteLine("Enter another Item (Y/N): ");
-                            again = (char)Console.Read();
-                            
-                            if (again == 'Y' || again == 'y')
-                            {
-                                loop = true;
-                            }
-                            else /*if (again == 'N' || again == 'n')*/ 
-                            {
-                                loop = false;
-                            }
-                            /*else
-                            {
-                                C.WriteLine("Wrong Input\n");
-                            }*/
-
-                            //}
-
-                        } while (loop);
-                        
-                }
-                else if (choice == 3)
+                    }
+                    else if (choice == 3)
                 {
                         //
                         //View warehouses();
@@ -170,32 +145,44 @@ namespace CPE311_TermProject
 
         public void AddItemtoWarehouse()
         {
-       
-            Console.Write(C.indent1 + "Enter Warehouse Name:  ");
-            string wName = Console.ReadLine();
-
-            //
-            // TO-DO:check if warehouse exists
             
-            if (wName.Length > 5)
-            {
-                C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
-                Console.Write(C.indent1 + "Do you want try again? (y,n)");
-                char again = (char)Console.Read();
-                if (again == 'y' || again == 'Y')
-                    AddItemtoWarehouse();
-                else if (again == 'n' || again == 'N')
-                    ManagerScreen();
+            bool loop = false;
+            
+            do {
+                Console.Write(C.indent1 + "Enter Warehouse Name:  ");
+                string wName = Console.ReadLine();
+                bool exists = false;
+                int i = 0;
+                for (; i < System.warehouseCounter; i++)
+                {
+                    if (System.warehouses[i].getName() == wName)
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
+                    Console.WriteLine(C.indent1 + "Do you want try again? (y,n)");
+                    char again = (char)Console.ReadLine()[0];
+                    if (again == 'y' || again == 'Y')
+                        AddItemtoWarehouse();
+                    else if (again == 'n' || again == 'N')
+                        ManagerScreen();
+                    else
+                    {
+                        C.WriteLine(C.indent1 + "Wrong Input...");
+                        ManagerScreen();
+                    }
+                }
                 else
                 {
-                    C.WriteLine(C.indent1 + "Wrong Input...");
-                    ManagerScreen();
-                }
-            }
-            else {
 
                 S:
-                    try {
+                    try
+                    {
                         Console.Write(C.indent1 + "Enter item's Name:  ");
                         string Iname = Console.ReadLine();
                         Console.Write(C.indent1 + "Enter item's Price:  ");
@@ -208,15 +195,33 @@ namespace CPE311_TermProject
                         UInt64 Code = Convert.ToUInt64(Console.ReadLine());//previous --> Int64 Code =Convert.ToInt64(Console.ReadLine())---> so it made some errors with item constructor so I changed it
                         Console.Write(C.indent1 + "Enter item's Quantity:  ");
                         UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
-                        
-                        Item newItem = new Item(Iname, price, Code, IQuantity);
-                    
-                }
+
+                        System.warehouses[i].addItem(new Item(Iname, price, Code, IQuantity));
+
+                    }
                     catch
                     {
                         C.WriteLine("Wrong Input,Try Again...");
                         goto S;
                     }
+                    char again;
+                    C.WriteLine("Enter another Item (Y/N): ");
+                    again = (char)Console.ReadLine()[0];
+                    if (again == 'Y' || again == 'y')
+                    {
+                        AddItemtoWarehouse();
+                    }
+                    else
+                    {
+                        loop = false;
+                    }
+                }
+            } while (loop);
+            
+
+            //
+            // TO-DO:check if warehouse exists
+            
                 
                     //
                     //
@@ -224,7 +229,7 @@ namespace CPE311_TermProject
                     //adds the quantity to the existing item 
                     //else creates a new item and inserts it to the warehouse 
                     //
-            }
+            
         }
     }
 }

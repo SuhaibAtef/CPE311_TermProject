@@ -30,6 +30,10 @@ namespace CPE311_TermProject
         {
             this.quantity += value;
         }
+        public void print()
+        {
+            C.WriteLine(name+"\t\t\t"+ code + "\t"+ price + "\t"+ quantity);
+        }
     }
 
     class Warehouse
@@ -73,6 +77,18 @@ namespace CPE311_TermProject
         {
             items.Remove(item);
         }
-      
+        public void viewWarehouse()
+        {
+            C.WriteLine(C.stars);
+            C.WriteLine(C.stars4+"Warhouse "+name+C.stars4);
+            C.WriteLine(C.stars);
+            C.WriteLine("Title\t\t\tCode\tPrice\tQuantity");
+            int i = 0;
+            while (i < items.Count)
+            {
+                items[i].print();
+                i++;
+            }
+        }
     }
 }
