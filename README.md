@@ -15,7 +15,9 @@
 
 ## Objective
 To apply what we have learned in the Object Oriented Software Analysis & Design course to design and implement a simplified model of Central Supply Unit software. 
+
 ##Prerequisites
+
 - Microsoft Visual Studio.
 - C# SDK.
 
