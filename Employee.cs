@@ -56,7 +56,12 @@ namespace CPE311_TermProject
             }
             else
             {
-                C.WriteLine("username or password was wrong...");
+                C.WriteLine("username or password was wrong...  Try Agin?(y,n)");
+                char again = (char)Console.ReadLine()[0];
+                if (again == 'y' || again == 'Y')
+                    SignIn();
+               // else
+                    //System.Login();
             }
            // Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
            // System.employees[System.employeeCounter++] = ew;
@@ -301,6 +306,7 @@ namespace CPE311_TermProject
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
+                                System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(5000);
                                 Console.Clear();
