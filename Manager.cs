@@ -26,6 +26,7 @@ namespace CPE311_TermProject
             string upass = Console.ReadLine();
             if (uname == "Manager" && upass == "Manager")
             {
+                Console.Clear();
                 ManagerScreen(); /// Manager Main Screen
             }
             else
@@ -87,6 +88,27 @@ namespace CPE311_TermProject
                         //
                         //View supply documents();
                         //
+                        foreach (SupplyDocuments supply in System.supplyDocuments)
+                        {
+                            supply.viewSupply();
+                            int decision = Convert.ToInt32(Console.ReadLine());
+                            switch (decision)
+                            {
+                                case 1:
+                                    supply.approve();
+                                    break;
+                                case 2:
+                                    System.supplyDocuments.Remove(supply);
+                                    break;
+                                case 3:
+                                    continue;
+                                default:
+                                    C.WriteLine("No decision was made,Posponing the supply document");
+                                    break;
+
+                            }
+
+                        }
                         //System.StoreFiles();
 
                     }

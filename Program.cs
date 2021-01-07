@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 namespace CPE311_TermProject
 {
     class System
-    {
+    {   //
+        // Main System / Screen 
+        //
         public static Warehouse[] warehouses = new Warehouse[100];
         public static UInt32 warehouseCounter = 0;
         public static Employee[] employees = new Employee[100];
@@ -43,17 +45,29 @@ namespace CPE311_TermProject
                
                 if (choice == 1)
                 {
-                    ((Manager)m).SignIn(); //managerSignIn(); 
+                    //
+                    // ManagerSignIn
+                    //
+
+                    m.SignIn(); 
                     break;
                 } 
                 else if (choice == 2)
                 {
+                        //
+                        // EmployeeSignIn
+                        //
+
                         Console.Clear();
-                        Employee.SignIn(); //employeeSignIn(); 
+                        Employee.SignIn();  
                         break;
                 }
                 else if (choice == 3)
                 {
+                        //
+                        // EmployeeSignUP
+                        //
+
                         Console.Clear();
                         try
                         {
@@ -90,8 +104,10 @@ namespace CPE311_TermProject
                 }
                 else if (choice == 4) 
                 {
-                                   
-                    break; 
+                        //
+                        // Exiting the Loop and the program;
+                        //             
+                        break; 
                 }
                 else
                 {
@@ -100,32 +116,18 @@ namespace CPE311_TermProject
             }
             }
             catch (Exception e)
-            {
+            {   //
+                // Retry Login  if the user failed 
+                //
                 C.WriteLine(e.Message + " Please try again...");
                 Login();
             }
 
         }
-
-        static public void SignIn() 
-        {
-            C.WriteLine( C.stars);
-            C.WriteLine( C.stars);
-            Console.Write(C.indent1 + "Enter Username:  ");
-            String username = Console.ReadLine();
-            Console.Write(C.indent1 + "Enter Password:  ");
-            String password = Console.ReadLine();
-            if (username == "Manager" && password == "Manager") 
-            {
-                Console.WriteLine("Manager Signed In Correctly");
-            }
-            else 
-            {
-                Console.WriteLine("Wrong Login information try again or sign up if you are not");
-            }
-        
-        }
-
+        //
+        //Loading all the files
+        //when (opening the program) / restoring the data
+        //
         static public void loadFiles()
         {
             FileStream warehouse_file;
@@ -182,7 +184,9 @@ namespace CPE311_TermProject
             }
             supplyDocuments_file.Close();
         }
-
+        //
+        //Updating the whole data when any change to the data happens.
+        //
         static public void StoreFiles()
         {
             FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.Create, FileAccess.Write);
@@ -217,9 +221,6 @@ namespace CPE311_TermProject
             
             loadFiles();
             Login();
-            //
-            //Idea:::   Using the manager object to call functions;;
-            //
         }
     }
 }

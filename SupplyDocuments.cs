@@ -43,6 +43,21 @@ namespace CPE311_TermProject
         {
             return date;
         }
+        public void viewSupply()
+        {
+            //
+            //Add code to view Supply Document
+            //
+
+        }
+
+        public void approve()
+        {
+            //
+            //code if the supply document is Approved
+            //
+
+        }
         /// <summary>
         /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
         /// </summary>
