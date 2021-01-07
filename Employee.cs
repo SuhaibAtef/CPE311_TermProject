@@ -265,7 +265,7 @@ namespace CPE311_TermProject
                     }
                     break;
                 case 4:
-                    System.Login(e);
+                    System.Login();
                     break;
                 default:
                     C.WriteLine("\nWRONG INPUT CHOICE");

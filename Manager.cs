@@ -31,7 +31,7 @@ namespace CPE311_TermProject
             else
             {
                 C.WriteLine("Wrong Login information try again");
-                System.Login(this);
+                System.Login();
             }
         }
 
@@ -124,7 +124,7 @@ namespace CPE311_TermProject
                         //
                     C.WriteLine("Logging Out...");
                     System.StoreFiles();
-                    System.Login(this);
+                    System.Login();
                     break;
                 }
                     else

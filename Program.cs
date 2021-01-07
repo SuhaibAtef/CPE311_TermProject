@@ -15,8 +15,9 @@ namespace CPE311_TermProject
         public static Employee[] employees = new Employee[100];
         public static UInt32 employeeCounter = 0;
         public static List<SupplyDocuments> supplyDocuments = new List<SupplyDocuments>();
-        static public void Login(object m)
+        static public void Login()
         {
+            Manager m = new Manager("Manager", "Manager");
             try
             {
                 
@@ -101,7 +102,7 @@ namespace CPE311_TermProject
             catch (Exception e)
             {
                 C.WriteLine(e.Message + " Please try again...");
-                Login(m);
+                Login();
             }
 
         }
@@ -213,9 +214,9 @@ namespace CPE311_TermProject
             /// </summary>
             supplyDocuments.Add(new SupplyDocuments(1, "something", 25, 30, "suhaib", "h"));
             supplyDocuments[0].changeTime(181);
-            Manager m = new Manager("Manager", "Manager");
+            
             loadFiles();
-            Login(m);
+            Login();
             //
             //Idea:::   Using the manager object to call functions;;
             //
