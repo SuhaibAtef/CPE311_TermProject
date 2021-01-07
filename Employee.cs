@@ -22,7 +22,7 @@ namespace CPE311_TermProject
             this.id = id;
             this.username = username;
             this.password = password;
-
+          
         }
      
         public static  void SignIn()
@@ -39,10 +39,33 @@ namespace CPE311_TermProject
             //
             //if they are correct move to emp screen with the object informations and return an employee object
             //
-
-            Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
-
-            Employee.employeescreen(ew);
+            bool exist = false;
+            int i = 0;
+            while (i < System.employeeCounter)
+            {
+                if (System.employees[i].username == un && System.employees[i].password == up)
+                {
+                    exist = true;
+                    break;
+                }
+                i++;
+            }
+            if (exist)
+            {
+                employeescreen(System.employees[i]);
+            }
+            else
+            {
+                C.WriteLine("username or password was wrong...  Try Agin?(y,n)");
+                char again = (char)Console.ReadLine()[0];
+                if (again == 'y' || again == 'Y')
+                    SignIn();
+               // else
+                    //System.Login();
+            }
+           // Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
+           // System.employees[System.employeeCounter++] = ew;
+           // employeescreen(ew);
             
         }
         public static void employeescreen(Employee e)
@@ -73,21 +96,34 @@ namespace CPE311_TermProject
                     C.WriteLine(C.stars);
                     //foreach(Item i in e.items)
                     //{
-                        //
-                        //print the items for the employee
-                        //
+                    //
+                    //print the items for the employee
+                    //
                     //} 
-                    Console.WriteLine("\n\n\n");
                     //
                     // print all warehaouses and items in it
                     //
+                    if (e.items == null)
+                    {
+                        C.WriteLine("");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < e.items.Length; i++)
+                            e.items[i].print();
+                    }
+                    Console.WriteLine("\n\n");
+                    for (int i = 0; i < System.warehouseCounter; i++)
+                    {
+                        System.warehouses[i].viewWarehouse();
+                    }
                     C.WriteLine("--------------------------------------------------------");
                     bool flag = true;
-                    
+
                     while (flag)
                     {
-                        
-                        Console.Write(C.indent1+"Enter warhouse name :");
+
+                        Console.Write(C.indent1 + "Enter warhouse name :");
                         string wn = Console.ReadLine();
                         Console.Write(C.indent1 + "Enter Item name :");
                         string In = Console.ReadLine();
@@ -103,15 +139,16 @@ namespace CPE311_TermProject
                             case 'Y':
                             case 'y':
                                 string d = DateTime.Now.ToString();
-                                SupplyDocuments supply = new SupplyDocuments(1,In,Ic,Iq,e.username,wn);
+                                SupplyDocuments supply = new SupplyDocuments(1, In, Ic, Iq, e.username, wn);
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
+                                System.supplyDocuments.Add(supply);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(5000);
                                 Console.Clear();
                                 goto sure;
-                                
+
                             case 'n':
                             case 'N':
                                 C.WriteLine("1- Enter information again?");
@@ -122,7 +159,7 @@ namespace CPE311_TermProject
                                     continue;
                                 else
                                     Console.Clear();
-                                    employeescreen(e);
+                                employeescreen(e);
                                 break;
 
                         }
@@ -141,10 +178,23 @@ namespace CPE311_TermProject
                     //print the items for the employee
                     //
                     //} 
-                    Console.WriteLine("\n\n\n");
                     //
                     // print all warehaouses and items in it
                     //
+                    if (e.items == null)
+                    {
+                        C.WriteLine("");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < e.items.Length; i++)
+                            e.items[i].print();
+                    }
+                    Console.WriteLine("\n\n");
+                    for (int i = 0; i < System.warehouseCounter; i++)
+                    {
+                        System.warehouses[i].viewWarehouse();
+                    }
                     C.WriteLine("--------------------------------------------------------");
                  
                     bool flag2 = true;
@@ -174,6 +224,7 @@ namespace CPE311_TermProject
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
+                                System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(5000);
                                 Console.Clear();
@@ -212,10 +263,23 @@ namespace CPE311_TermProject
                     //print the items for the employee
                     //
                     //} 
-                    Console.WriteLine("\n\n\n");
                     //
                     // print all warehaouses and items in it
                     //
+                    if (e.items == null)
+                    {
+                        C.WriteLine("");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < e.items.Length; i++)
+                            e.items[i].print();
+                    }
+                    Console.WriteLine("\n\n");
+                    for (int i = 0; i < System.warehouseCounter; i++)
+                    {
+                        System.warehouses[i].viewWarehouse();
+                    }
                     C.WriteLine("--------------------------------------------------------");
 
                     bool flag3 = true;
@@ -242,6 +306,7 @@ namespace CPE311_TermProject
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //
+                                System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(5000);
                                 Console.Clear();

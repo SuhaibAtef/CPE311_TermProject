@@ -75,8 +75,8 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            employees[employeeCounter] = new Employee(fn, ln, id, un, ps);
-
+                            employees[employeeCounter++] = new Employee(fn, ln, id, un, ps);
+                            StoreFiles();
 
                             //
                             // open the file and dump the object
