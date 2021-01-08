@@ -88,10 +88,15 @@ namespace CPE311_TermProject
                         //
                         //View supply documents();
                         //
+                        if(System.supplyDocuments.Count == 0)
+                        {
+                            C.WriteLine("There's No Supply Documents to View.");
+                        }else
+                        { 
                         foreach (SupplyDocuments supply in System.supplyDocuments)
                         {
                             supply.viewSupply();
-                            Console.Write(C.indent1 + "1.Approve  2.Delete  3.Postpone");
+                            Console.Write(C.indent1 + "1.Approve  2.Delete  3.Postpone  ");
                             int decision = Convert.ToInt32(Console.ReadLine());
                             switch (decision)
                             {
@@ -111,7 +116,7 @@ namespace CPE311_TermProject
 
                         }
                         System.StoreFiles();
-
+                        }
                     }
                     else if (choice == 5)
                 {
@@ -254,7 +259,7 @@ namespace CPE311_TermProject
                         goto S;
                     }
                     char again;
-                    C.WriteLine("Enter another Item (Y/N): ");
+                    Console.Write(C.indent1 + "Enter another Item (Y/N):\n" + C.indent1);
                     again = (char)Console.ReadLine()[0];
                     if (again == 'Y' || again == 'y')
                     {

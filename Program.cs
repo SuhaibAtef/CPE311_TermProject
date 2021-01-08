@@ -171,7 +171,7 @@ namespace CPE311_TermProject
             if (File.Exists("SupplyDocuments.txt"))
             {
                 supplyDocuments_file = new FileStream("SupplyDocuments.txt", FileMode.Open, FileAccess.Read);
-                int supplyDocumentsCounter = 0;
+                //int supplyDocumentsCounter = 0;
                 while (supplyDocuments_file.Position < supplyDocuments_file.Length)
                 {
                     supplyDocuments.Add((SupplyDocuments)formatter.Deserialize(supplyDocuments_file));
@@ -216,8 +216,8 @@ namespace CPE311_TermProject
             /// <summary>
             /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
             /// </summary>
-            supplyDocuments.Add(new SupplyDocuments(1, "something", 25, 30, "suhaib", "h"));
-            supplyDocuments[0].changeTime(181);
+            //supplyDocuments.Add(new SupplyDocuments(1, "something", 25, 30, "suhaib", "h"));
+            //supplyDocuments[0].changeTime(181);
             
             loadFiles();
             Login();
