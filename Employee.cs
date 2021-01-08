@@ -76,9 +76,6 @@ namespace CPE311_TermProject
                 else
                     System.Login();
             }
-           // Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
-           // System.employees[System.employeeCounter++] = ew;
-           // employeescreen(ew);
             
         }
         public static void employeescreen(Employee e)
@@ -179,9 +176,10 @@ namespace CPE311_TermProject
                     }
                     break;
                 case 2:
+                    int q = (66 - (e.fname + " " + e.lname + "       userName: " + e.username + "    ID: " + e.id).Length) / 6;
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars5 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars5);
+                    C.WriteLine(new string('*',q) + new string(' ', q) + e.fname + " " + e.lname + new string(' ', q) + "      userName: " + e.username + new string(' ', q) + "    ID:  " + e.id + new string(' ', q) + new string('*', q));
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -203,11 +201,7 @@ namespace CPE311_TermProject
                         for (int i = 0; i < e.items.Length; i++)
                             e.items[i].print();
                     }
-                    Console.WriteLine("\n\n");
-                    for (int i = 0; i < System.warehouseCounter; i++)
-                    {
-                        System.warehouses[i].viewWarehouse();
-                    }
+                    
                     C.WriteLine("--------------------------------------------------------");
                  
                     bool flag2 = true;

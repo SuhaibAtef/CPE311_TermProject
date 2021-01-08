@@ -88,6 +88,8 @@ namespace CPE311_TermProject
                         //
                         //View supply documents();
                         //
+                        List<SupplyDocuments> deletedSupplyDocs = new List<SupplyDocuments>();
+
                         if(System.supplyDocuments.Count == 0)
                         {
                             C.WriteLine("There's No Supply Documents to View.");
@@ -104,7 +106,7 @@ namespace CPE311_TermProject
                                     supply.approve();
                                     break;
                                 case 2:
-                                    System.supplyDocuments.Remove(supply);
+                                        deletedSupplyDocs.Add(supply);
                                     break;
                                 case 3:
                                     continue;
@@ -115,7 +117,11 @@ namespace CPE311_TermProject
                             }
 
                         }
-                        System.StoreFiles();
+                        foreach (SupplyDocuments supply in deletedSupplyDocs)
+                        {
+                                System.supplyDocuments.Remove(supply);
+                        }
+                                System.StoreFiles();
                         }
                     }
                     else if (choice == 5)
