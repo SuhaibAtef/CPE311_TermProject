@@ -24,7 +24,20 @@ namespace CPE311_TermProject
             this.password = password;
           
         }
-     
+        public string getUsername()
+        {
+            return username;
+        }
+        public string getFname()
+        {
+            return fname;
+        }
+        public string getLname()
+        {
+            return lname;
+        }
+
+
         public static  void SignIn()
         {
 
@@ -60,8 +73,8 @@ namespace CPE311_TermProject
                 char again = (char)Console.ReadLine()[0];
                 if (again == 'y' || again == 'Y')
                     SignIn();
-               // else
-                    //System.Login();
+                else
+                    System.Login();
             }
            // Employee ew = new Employee("suhib", "atef", 1234, un, up); //instead of finding the employee info
            // System.employees[System.employeeCounter++] = ew;

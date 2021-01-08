@@ -48,7 +48,26 @@ namespace CPE311_TermProject
             //
             //Add code to view Supply Document
             //
-
+            C.WriteLine(C.stars);
+            C.WriteLine("For store : "+warehouseName);
+            C.WriteLine(C.stars);
+            C.WriteLine("To user:");
+            int i = 0;
+            string fname ="";
+            string lname="";
+            for (; i < System.employeeCounter; i++)
+            {
+                if (System.employees[i].getUsername() == senderUsername)
+                {
+                    fname = System.employees[i].getFname();
+                    lname = System.employees[i].getLname();
+                    break;
+                }
+            }
+            C.WriteLine("Name: " + fname + "   " + lname + "---- username:" + senderUsername);
+            C.WriteLine(C.stars);
+            C.WriteLine("Item: " + itemName + "  Quantity: " + itemQuantity + "  Date: " + date.ToString());
+            C.WriteLine(C.dashes);
         }
 
         public void approve()

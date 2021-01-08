@@ -174,7 +174,7 @@ namespace CPE311_TermProject
                 int supplyDocumentsCounter = 0;
                 while (supplyDocuments_file.Position < supplyDocuments_file.Length)
                 {
-                    supplyDocuments[supplyDocumentsCounter++] = (SupplyDocuments)formatter.Deserialize(supplyDocuments_file);
+                    supplyDocuments.Add((SupplyDocuments)formatter.Deserialize(supplyDocuments_file));
                 }
 
             }

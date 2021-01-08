@@ -91,6 +91,7 @@ namespace CPE311_TermProject
                         foreach (SupplyDocuments supply in System.supplyDocuments)
                         {
                             supply.viewSupply();
+                            Console.Write(C.indent1 + "1.Approve  2.Delete  3.Postpone");
                             int decision = Convert.ToInt32(Console.ReadLine());
                             switch (decision)
                             {
@@ -109,7 +110,7 @@ namespace CPE311_TermProject
                             }
 
                         }
-                        //System.StoreFiles();
+                        System.StoreFiles();
 
                     }
                     else if (choice == 5)
