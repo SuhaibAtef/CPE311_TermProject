@@ -47,7 +47,7 @@ UML Case Description. [[Word File](https://drive.google.com/file/d/1CRrBo6OEzP1I
 using [StarUML Software](https://staruml.io/download). 
 
 ## UML Case Sequence
-[Yet to Come]
+See the whole [Sequence Diagram](https://github.com/SuhaibAtef/CPE311_TermProject/blob/master/Sequence%20Diagram.md)
 
 using [StarUML Software](https://staruml.io/download). 
 
