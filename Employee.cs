@@ -98,9 +98,10 @@ namespace CPE311_TermProject
             switch (ch)
             {
                 case 1:
+                    int q = (66 - (e.fname + " " + e.lname + "       userName: " + e.username + "    ID: " + e.id).Length) / 6;
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars5 +C.indent1+ e.fname + " " + e.lname + C.indent1+"      userName: " + e.username + C.indent1+"    ID: " + e.id+C.indent1 + C.stars5);
+                    C.WriteLine(new string('*', q) + new string(' ', q) + e.fname + " " + e.lname + new string(' ', q) + "      userName: " + e.username + new string(' ', q) + "    ID:  " + e.id + new string(' ', q) + new string('*', q));
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -113,15 +114,7 @@ namespace CPE311_TermProject
                     //
                     // print all warehaouses and items in it
                     //
-                    if (e.items == null)
-                    {
-                        C.WriteLine("");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < e.items.Length; i++)
-                            e.items[i].print();
-                    }
+                    e.printempitems();
                     Console.WriteLine("\n\n");
                     System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
@@ -173,10 +166,10 @@ namespace CPE311_TermProject
                     }
                     break;
                 case 2:
-                    int q = (66 - (e.fname + " " + e.lname + "       userName: " + e.username + "    ID: " + e.id).Length) / 6;
+                    int q2 = (66 - (e.fname + " " + e.lname + "       userName: " + e.username + "    ID: " + e.id).Length) / 6;
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(new string('*',q) + new string(' ', q) + e.fname + " " + e.lname + new string(' ', q) + "      userName: " + e.username + new string(' ', q) + "    ID:  " + e.id + new string(' ', q) + new string('*', q));
+                    C.WriteLine(new string('*',q2) + new string(' ', q2) + e.fname + " " + e.lname + new string(' ', q2) + "      userName: " + e.username + new string(' ', q2) + "    ID:  " + e.id + new string(' ', q2) + new string('*', q2));
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -189,15 +182,8 @@ namespace CPE311_TermProject
                     //
                     // print all warehaouses and items in it
                     //
-                    if (e.items == null)
-                    {
-                        C.WriteLine("");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < e.items.Length; i++)
-                            e.items[i].print();
-                    }
+                    e.printempitems();
+                    
                     
                     C.WriteLine("--------------------------------------------------------");
                  
@@ -255,9 +241,10 @@ namespace CPE311_TermProject
 
                         break;
                    case 3:
+                    int q3 = (66 - (e.fname + " " + e.lname + "       userName: " + e.username + "    ID: " + e.id).Length) / 6;
                     Console.Clear();
                     C.WriteLine(C.stars);
-                    C.WriteLine(C.stars5 + C.indent1 + e.fname + " " + e.lname + C.indent1 + "      userName: " + e.username + C.indent1 + "    ID: " + e.id + C.indent1 + C.stars5);
+                    C.WriteLine(new string('*', q3) + new string(' ', q3) + e.fname + " " + e.lname + new string(' ', q3) + "      userName: " + e.username + new string(' ', q3) + "    ID:  " + e.id + new string(' ', q3) + new string('*', q3));
                     C.WriteLine(C.stars);
                     C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
                     C.WriteLine(C.stars);
@@ -270,15 +257,7 @@ namespace CPE311_TermProject
                     //
                     // print all warehaouses and items in it
                     //
-                    if (e.items == null)
-                    {
-                        C.WriteLine("");
-                    }
-                    else
-                    {
-                        for (int i = 0; i < e.items.Length; i++)
-                            e.items[i].print();
-                    }
+                    e.printempitems();
                     Console.WriteLine("\n\n");
                     System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
@@ -341,6 +320,19 @@ namespace CPE311_TermProject
             }
 
 
+        }
+        public  void printempitems()
+        {
+            if (this.items.Length == 0)
+            {
+                C.WriteLine("There is no items ");
+            }
+            else
+            {
+                    for (int i = 0; i < this.items.Length; i++)
+                        this.items[i].print();
+               
+            }
         }
 
     }
