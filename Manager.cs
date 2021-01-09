@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace CPE311_TermProject
 {
@@ -55,7 +56,7 @@ namespace CPE311_TermProject
                 C.WriteLine("6. Exit");
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                Console.Write(C.indent1 + "Choice:");
+                Console.Write(C.indent1 + "Choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
                 if (choice == 1)
                 {
@@ -78,10 +79,9 @@ namespace CPE311_TermProject
                         //View warehouses();
                         //
                         Console.Clear();
-                        for (int i = 0; i < System.warehouseCounter; i++)
-                        {
-                            System.warehouses[i].viewWarehouse();
-                        }
+                        System.viewWarehouses();
+                        Thread.Sleep(2000);
+
                     }
                 else if (choice == 4)
                 {
@@ -104,6 +104,7 @@ namespace CPE311_TermProject
                             {
                                 case 1:
                                     supply.approve();
+                                    deletedSupplyDocs.Add(supply);
                                     break;
                                 case 2:
                                         deletedSupplyDocs.Add(supply);
@@ -178,18 +179,8 @@ namespace CPE311_TermProject
             Console.WriteLine(new String('-',60));
             Console.Write(C.indent1 + "Enter Warehouse Name:  ");
             string wName = Console.ReadLine();
-
-            bool Flag=false;
-           for(int i = 0; i < System.warehouseCounter; i++)
-            {
-                if (System.warehouses[i].getName() == wName)
-                {
-                    Flag = true;
-                    break;
-                }
-            }
             
-            if (Flag)
+            if (System.isWarehouseExists(wName))
             {
                 C.WriteLine(C.indent1+"Warehouse already exists.");
                 
@@ -211,18 +202,10 @@ namespace CPE311_TermProject
             do {
                 Console.Write(C.indent1 + "Enter Warehouse Name:  ");
                 string wName = Console.ReadLine();
-                bool exists = false;
+                
                 int i = 0;
-                for (; i < System.warehouseCounter; i++)
-                {
-                    if (System.warehouses[i].getName() == wName)
-                    {
-                        exists = true;
-                        break;
-                    }
-                }
 
-                if (!exists)
+                if (!System.isWarehouseExists(wName))
                 {
                     C.WriteLine(C.indent1 + "Warehouse doesn't exist.");
                     Console.WriteLine(C.indent1 + "Do you want try again? (y,n)");
@@ -277,18 +260,7 @@ namespace CPE311_TermProject
                     }
                 }
             } while (loop);
-            
 
-            //
-            // TO-DO:check if warehouse exists
-            
-                
-                    //
-                    //
-                    //if item already exist in the warehouse 
-                    //adds the quantity to the existing item 
-                    //else creates a new item and inserts it to the warehouse 
-                    //
             
         }
     }

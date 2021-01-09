@@ -123,10 +123,7 @@ namespace CPE311_TermProject
                             e.items[i].print();
                     }
                     Console.WriteLine("\n\n");
-                    for (int i = 0; i < System.warehouseCounter; i++)
-                    {
-                        System.warehouses[i].viewWarehouse();
-                    }
+                    System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
                     bool flag = true;
 
@@ -283,10 +280,7 @@ namespace CPE311_TermProject
                             e.items[i].print();
                     }
                     Console.WriteLine("\n\n");
-                    for (int i = 0; i < System.warehouseCounter; i++)
-                    {
-                        System.warehouses[i].viewWarehouse();
-                    }
+                    System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
 
                     bool flag3 = true;

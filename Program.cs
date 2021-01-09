@@ -29,7 +29,7 @@ namespace CPE311_TermProject
             {
 
 
-                Console.Clear();
+                
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
@@ -40,7 +40,7 @@ namespace CPE311_TermProject
                 C.WriteLine( "4. Exit");
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                Console.Write(C.indent1 + "Choice:");
+                Console.Write(C.indent1 + "Choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
                
                 if (choice == 1)
@@ -89,8 +89,17 @@ namespace CPE311_TermProject
                             un = Console.ReadLine();
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
-                            employees[employeeCounter++] = new Employee(fn, ln, id, un, ps);
-                            StoreFiles();
+                            if (!isEmployeeExists(un))
+                            {
+                                employees[employeeCounter++] = new Employee(fn, ln, id, un, ps);
+                                StoreFiles();
+                                Console.Clear();
+                            }
+                            else
+                            {
+                                C.WriteLine("Username already Exists");
+                            }
+                            
 
                             //
                             // open the file and dump the object
@@ -123,6 +132,46 @@ namespace CPE311_TermProject
                 Login();
             }
 
+        }
+        //
+        //viewWarehouses
+        //
+        static public void viewWarehouses()
+        {
+            for (int i = 0; i < System.warehouseCounter; i++)
+            {
+                System.warehouses[i].viewWarehouse();
+            }
+        }
+        //
+        //CheckEmployeeExists
+        //
+        static public bool isEmployeeExists(string username)
+        {
+            
+            for(int i = 0; i< employeeCounter; i++)
+            {
+                if(employees[i].getUsername()== username)
+                {
+                    return true; 
+                }
+            }
+            return false;
+        }
+        //
+        //CheckEmployeeExists
+        //
+        static public bool isWarehouseExists(string warehouseName)
+        {
+
+            for (int i = 0; i < warehouseCounter; i++)
+            {
+                if (warehouses[i].getName() == warehouseName)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         //
         //Loading all the files
@@ -192,23 +241,29 @@ namespace CPE311_TermProject
             FileStream warehouse_file = new FileStream("Warehouses.txt", FileMode.Create, FileAccess.Write);
             FileStream employee_file = new FileStream("Employees.txt", FileMode.Create, FileAccess.Write);
             FileStream supplyDocuments_file = new FileStream("SupplyDocuments.txt", FileMode.Create, FileAccess.Write);
+
             BinaryFormatter formatter = new BinaryFormatter();
+
             for(int i =0; i < warehouseCounter; i++)
             {
                 formatter.Serialize(warehouse_file, warehouses[i]);
             }
+            warehouse_file.Close();
+
             for (int i = 0; i < employeeCounter; i++)
             {
                 formatter.Serialize(employee_file, employees[i]);
             }
+            employee_file.Close();
+
             for (int i = 0; i < supplyDocuments.Count; i++)
             {
                 formatter.Serialize(supplyDocuments_file, supplyDocuments[i]);
             }
-            
-            warehouse_file.Close();
-            employee_file.Close();
             supplyDocuments_file.Close();
+
+
+
         }
         static void Main(string[] args)
            
