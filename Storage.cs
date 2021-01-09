@@ -19,6 +19,14 @@ namespace CPE311_TermProject
             this.code = code;
             this.quantity = quantity;
         }
+        public string getName()
+        {
+            return name;
+        }
+        public void setName(string name)
+        {
+            this.name = name;
+        }
         public UInt64 getCode()
         {
             return this.code;
@@ -47,7 +55,7 @@ namespace CPE311_TermProject
         {
             this.name = name;
         }
-        public String getName()
+        public string getName()
         {
             return name;
         }
@@ -62,7 +70,7 @@ namespace CPE311_TermProject
             while (i < items.Count)
             {
                 if (items[i].getCode() == item.getCode())
-                {
+                {   
                     items[i].changeQuantity(item.getQuantity());
                     found = true;
                     break;
@@ -85,11 +93,25 @@ namespace CPE311_TermProject
             C.WriteLine(C.stars);
             C.WriteLine("Title\t\t\tCode\tPrice\tQuantity");
             int i = 0;
+            
             while (i < items.Count)
             {
                 items[i].print();
                 i++;
             }
+        }
+        public bool checkItem(UInt64 code, UInt64 quantity)
+        {
+            int i = 0;
+            while (i < items.Count)
+            {
+                if (items[i].getCode() == code && items[i].getQuantity() >= quantity)
+                {
+                    return true;
+                }
+                i++;
+            }
+            return false;
         }
     }
 

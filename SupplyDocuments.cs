@@ -9,15 +9,15 @@ namespace CPE311_TermProject
     {
         private string warehouseName;
         private string itemName;
-        private int itemCode;
-        private int itemQuantity;
+        private UInt64 itemCode;
+        private UInt64 itemQuantity;
         private int type;
         DateTime date;
         private string senderUsername;
         private string recieverUsername;
         private int receiverId;
 
-        public SupplyDocuments(int type, string itemName, int itemCode, int itemQuantity, string senderUsername, string warehouseName="", string recieverUsername="", int receiverId=0)
+        public SupplyDocuments(int type, string itemName, UInt64 itemCode, UInt64 itemQuantity, string senderUsername, string warehouseName="", string recieverUsername="", int receiverId=0)
         {
             this.itemName = itemName;
             this.itemCode = itemCode;

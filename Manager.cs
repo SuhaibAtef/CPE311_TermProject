@@ -235,10 +235,13 @@ namespace CPE311_TermProject
                             throw new FormatException();
                         }
                         Console.Write(C.indent1 + "Enter item's Code:  ");
-                        UInt64 Code = Convert.ToUInt64(Console.ReadLine());//previous --> Int64 Code =Convert.ToInt64(Console.ReadLine())---> so it made some errors with item constructor so I changed it
+                        UInt64 Code = Convert.ToUInt64(Console.ReadLine());
                         Console.Write(C.indent1 + "Enter item's Quantity:  ");
                         UInt64 IQuantity = Convert.ToUInt64(Console.ReadLine());
-
+                        if (IQuantity == 0)
+                        {
+                            throw new FormatException();
+                        }
                         System.warehouses[i].addItem(new Item(Iname, price, Code, IQuantity));
 
                     }

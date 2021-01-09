@@ -42,40 +42,39 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 Console.Write(C.indent1 + "Choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
-               
+                //
+                // ManagerSignIn
+                //
                 if (choice == 1)
                 {
-                    //
-                    // ManagerSignIn
-                    //
+                    
 
                     m.SignIn(); 
                     break;
                 } 
+
+                //
+                // EmployeeSignIn
+                //
                 else if (choice == 2)
                 {
-                        //
-                        // EmployeeSignIn
-                        //
+                        
 
                         Console.Clear();
                         Employee.SignIn();  
                         break;
                 }
+                //
+                // EmployeeSignUP
+                //
                 else if (choice == 3)
                 {
-                        //
-                        // EmployeeSignUP
-                        //
 
                         Console.Clear();
                         try
                         {
-                            
-                            // declare variables
                             string fn, ln, un, ps;
                             int id;
-                            //print the screen
                             C.WriteLine(C.stars);
                             C.WriteLine(C.stars2 + "Employee Sign Up" + C.stars3);
                             C.WriteLine(C.stars);
@@ -99,11 +98,7 @@ namespace CPE311_TermProject
                             {
                                 C.WriteLine("Username already Exists");
                             }
-                            
 
-                            //
-                            // open the file and dump the object
-                            //
 
                         }
                         catch (Exception e)
@@ -111,11 +106,13 @@ namespace CPE311_TermProject
                             C.WriteLine("an error has occured please try again " + e.Message +"\n");
                         }
                 }
+
+                //
+                // Exiting the Loop and the program;
+                //
                 else if (choice == 4) 
                 {
-                        //
-                        // Exiting the Loop and the program;
-                        //             
+                                    
                         break; 
                 }
                 else
@@ -124,10 +121,11 @@ namespace CPE311_TermProject
                 }
             }
             }
+            //
+            // Retry Login  if the user failed 
+            //
             catch (Exception e)
-            {   //
-                // Retry Login  if the user failed 
-                //
+            {   
                 C.WriteLine(e.Message + " Please try again...");
                 Login();
             }
@@ -172,6 +170,21 @@ namespace CPE311_TermProject
                 }
             }
             return false;
+        }
+        //
+        //return warehouse from the system using the warehouse name 
+        //
+        static public Warehouse returnWarehouse(string warehouseName)
+        {
+            int i;
+            for (i = 0; i < warehouseCounter; i++)
+            {
+                if (warehouses[i].getName() == warehouseName)
+                {
+                    break;
+                }
+            }
+            return warehouses[i];
         }
         //
         //Loading all the files
@@ -265,8 +278,9 @@ namespace CPE311_TermProject
 
 
         }
+
+
         static void Main(string[] args)
-           
         {
             /// <summary>
             /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
