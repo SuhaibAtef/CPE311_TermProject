@@ -81,8 +81,8 @@ namespace CPE311_TermProject
                 //Requeste from warehouse to employee 
                 case 1:
                     
-                    int i;
-                    for (i = 0; i < System.warehouseCounter; i++)
+                    int i=0;
+                    for (; i < System.warehouseCounter; i++)
                     {
                         if (System.warehouses[i].getName() == warehouseName)
                         {
@@ -90,7 +90,7 @@ namespace CPE311_TermProject
                         }
                     }
                     Item empItem = new Item(itemName, System.warehouses[i].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
-                    System.warehouses[i].reduceItemOrDelete(empItem);
+                    bool d = System.warehouses[i].reduceItemOrDelete(empItem);
                     i = 0;
                     for (; i < System.employeeCounter; i++)
                     {
@@ -99,7 +99,10 @@ namespace CPE311_TermProject
                             break;
                         }
                     }
-                    System.employees[i].addItem(empItem);
+                    if (d)
+                    {
+                        System.employees[i].addItem(empItem);
+                    }
 
                     break;
                 //transfer from employee to employee 
@@ -113,7 +116,7 @@ namespace CPE311_TermProject
                         }
                     }
                     Item empItem2 = new Item(itemName, System.employees[j].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
-                    System.employees[j].reduceItemOrDelete(empItem2);
+                    bool b = System.employees[j].reduceItemOrDelete(empItem2);
                     j = 0;
                     for (; j < System.employeeCounter; j++)
                     {
@@ -122,8 +125,11 @@ namespace CPE311_TermProject
                             break;
                         }
                     }
-                    System.employees[j].addItem(empItem2);
-
+                    
+                    if (b)
+                    {
+                        System.employees[j].addItem(empItem2);
+                    }
 
                     break;
                 //return from employee to warehouse 
@@ -137,7 +143,7 @@ namespace CPE311_TermProject
                         }
                     }
                     Item empItem3 = new Item(itemName, System.employees[k].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
-                    System.employees[k].reduceItemOrDelete(empItem3);
+                    bool n = System.employees[k].reduceItemOrDelete(empItem3);
                     k=0;
                     for (k = 0; k < System.warehouseCounter; k++)
                     {
@@ -146,7 +152,11 @@ namespace CPE311_TermProject
                             break;
                         }
                     }
-                    System.warehouses[k].addItem(empItem3);
+                    
+                    if (n)
+                    {
+                        System.warehouses[k].addItem(empItem3);
+                    }
                     break;
 
             }

@@ -90,11 +90,19 @@ namespace CPE311_TermProject
                 items.Add(item);
             }
         }
-        public void reduceItemOrDelete(Item item)
+        public bool reduceItemOrDelete(Item item)
         {
             Item oldItem = returnItem(item.getCode());
-            if(oldItem.getQuantity()==item.getQuantity())
+            if (oldItem.getQuantity() == item.getQuantity()) { 
                 items.Remove(oldItem);
+                return true;
+            }
+                
+            else if (oldItem.getQuantity() < item.getQuantity())
+            {
+                C.WriteLine("Not enough quantity");
+                return false;
+            }
             else
             {
 
@@ -105,10 +113,11 @@ namespace CPE311_TermProject
                     {
                         break;
                     }
-
+                    i++;
                 }
                 
                 items[i].reduceQuantity(item.getQuantity());
+                return true;
             }
         }
         public void viewWarehouse()
@@ -151,6 +160,7 @@ namespace CPE311_TermProject
                 {
                     break;
                 }
+                i++;
                 
             }
             return items[i];

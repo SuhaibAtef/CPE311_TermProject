@@ -83,11 +83,20 @@ namespace CPE311_TermProject
             return EmpItems[i];
 
         }
-        public void reduceItemOrDelete(Item item)
+        public bool reduceItemOrDelete(Item item)
         {
             Item oldItem = returnItem(item.getCode());
             if (oldItem.getQuantity() == item.getQuantity())
+            {
                 EmpItems.Remove(oldItem);
+                return true;
+            }
+
+            else if (oldItem.getQuantity() < item.getQuantity())
+            {
+                C.WriteLine("Not enough quantity");
+                return false;
+            }
             else
             {
 
@@ -98,10 +107,11 @@ namespace CPE311_TermProject
                     {
                         break;
                     }
-
+                    i++;
                 }
 
                 EmpItems[i].reduceQuantity(item.getQuantity());
+                return true;
             }
         }
         public bool checkItem(UInt64 code, UInt64 quantity)
@@ -324,6 +334,11 @@ namespace CPE311_TermProject
                             C.WriteLine("No Employee with that Username");
                             break;
                         }
+                        if (un== this.username)
+                        {
+                            C.WriteLine("You Can't  Send Item's to YOURSELF.");
+                            break;
+                        }
                         Console.Write(C.indent1 + "Are you sure Y/N :");
                         char check = Convert.ToChar(Console.ReadLine());
 
@@ -460,7 +475,7 @@ namespace CPE311_TermProject
                     break;
                 case 4:
                     C.WriteLine("Logging Out...");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(3000);
                     System.StoreFiles();
                     Console.Clear();
                     System.Login();

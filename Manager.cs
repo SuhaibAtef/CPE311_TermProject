@@ -201,7 +201,6 @@ namespace CPE311_TermProject
 
 
         }
-
         public void AddItemtoWarehouse()
         {
             
@@ -230,7 +229,14 @@ namespace CPE311_TermProject
                 }
                 else
                 {
-
+                    for (int j = 0; j < System.warehouseCounter; j++)
+                    {
+                        if (System.warehouses[j].getName() == wName)
+                        {
+                            i = j;
+                            break;
+                        }
+                    }
                 S:
                     try
                     {
@@ -278,5 +284,6 @@ namespace CPE311_TermProject
 
             
         }
+        
     }
 }
