@@ -102,6 +102,10 @@ namespace CPE311_TermProject
         }
         public bool checkItem(UInt64 code, UInt64 quantity)
         {
+            if (quantity == 0)
+            {
+                return false;
+            }
             int i = 0;
             while (i < items.Count)
             {

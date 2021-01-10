@@ -62,6 +62,9 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
+                        C.WriteLine("Created Warehouse Successfilly");
+                        Thread.Sleep(2000);
+                        Console.Clear();
                         
 
                 }
@@ -158,7 +161,9 @@ namespace CPE311_TermProject
                         //exit();
                         //
                     C.WriteLine("Logging Out...");
+                    Thread.Sleep(2000);
                     System.StoreFiles();
+                    Console.Clear();
                     System.Login();
                     break;
                 }

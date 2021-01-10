@@ -50,6 +50,23 @@ namespace CPE311_TermProject
 
             }
         }
+        public bool checkItem(UInt64 code, UInt64 quantity)
+        {
+            if (quantity == 0)
+            {
+                return false;
+            }
+            int i = 0;
+            while (i < EmpItems.Count)
+            {
+                if (EmpItems[i].getCode() == code && EmpItems[i].getQuantity() >= quantity)
+                {
+                    return true;
+                }
+                i++;
+            }
+            return false;
+        }
         public static  void SignIn()
         {
 
@@ -108,17 +125,19 @@ namespace CPE311_TermProject
             Console.Write(C.indent1+"choice : ");
             ch = Convert.ToInt32(Console.ReadLine());
 
+            int q = (66 - (this.fname + " " + this.lname + "       userName: " + this.username + "    ID: " + this.id).Length) / 6;
+            Console.Clear();
+            C.WriteLine(C.stars);
+            C.WriteLine(new string('*', q) + new string(' ', q) + this.fname + " " + this.lname + new string(' ', q) + "      userName: " + this.username + new string(' ', q) + "    ID:  " + this.id + new string(' ', q) + new string('*', q));
+            C.WriteLine(C.stars);
+            C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
+            C.WriteLine(C.stars);
+            printEmpItems();
+
             switch (ch)
             {
                 case 1:
-                    int q = (66 - (this.fname + " " + this.lname + "       userName: " + this.username + "    ID: " + this.id).Length) / 6;
-                    Console.Clear();
-                    C.WriteLine(C.stars);
-                    C.WriteLine(new string('*', q) + new string(' ', q) + this.fname + " " + this.lname + new string(' ', q) + "      userName: " + this.username + new string(' ', q) + "    ID:  " + this.id + new string(' ', q) + new string('*', q));
-                    C.WriteLine(C.stars);
-                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
-                    C.WriteLine(C.stars);
-                    printEmpItems();
+                   
                     Console.WriteLine("\n\n");
                     System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
@@ -180,20 +199,19 @@ namespace CPE311_TermProject
                     employeescreen();
                     break;
                 case 2:
-                    int q2 = (66 - (this.fname + " " + this.lname + "       userName: " + this.username + "    ID: " + this.id).Length) / 6;
-                    Console.Clear();
-                    C.WriteLine(C.stars);
-                    C.WriteLine(new string('*',q2) + new string(' ', q2) + this.fname + " " + this.lname + new string(' ', q2) + "      userName: " + this.username + new string(' ', q2) + "    ID:  " + this.id + new string(' ', q2) + new string('*', q2));
-                    C.WriteLine(C.stars);
-                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
-                    C.WriteLine(C.stars);
-                    this.printEmpItems();
+
                     C.WriteLine("--------------------------------------------------------");
-                 
+                    if (EmpItems.Count == 0)
+                    {
+                        C.WriteLine("You dont have any items ");
+                        employeescreen();
+                    }
+
                     bool flag2 = true;
 
                     while (flag2)
                     {
+                        
 
                         Console.Write(C.indent1 + "Enter Item name :");
                         string Iname = Console.ReadLine();
@@ -205,6 +223,11 @@ namespace CPE311_TermProject
                         //
                         // Check item is in Items Employee 
                         //
+                        if (!checkItem(Icode,Iquantity))
+                        {
+                            C.WriteLine("Item does not exist");
+                            break;
+                        }
                         Console.Write(C.indent1 + "Enter Username of the employee :");
                         string un = Console.ReadLine();
                         Console.Write(C.indent1 + "Enter employee Id :");
@@ -213,6 +236,11 @@ namespace CPE311_TermProject
                         //
                         // Check emplyee exists using (isEmployeeExists) 
                         //
+                        if (!System.isEmployeeExists(un))
+                        {
+                            C.WriteLine("No Employee with that Username");
+                            break;
+                        }
                         Console.Write(C.indent1 + "Are you sure Y/N :");
                         char check = Convert.ToChar(Console.ReadLine());
 
@@ -224,10 +252,10 @@ namespace CPE311_TermProject
                                 SupplyDocuments supply2 = new SupplyDocuments(2,Iname,Icode,Iquantity,this.username," ",un,Id);
                                 System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
-                                Thread.Sleep(5000);
+                                Thread.Sleep(2000);
                                 Console.Clear();
-                                goto sure;
-                                //plz غيرها 
+                                flag2 = false;
+                                break;
                             case 'n':
                             case 'N':
                                 Console.Write(C.indent1 + "1- Enter information again? :");
@@ -243,21 +271,17 @@ namespace CPE311_TermProject
 
                         }
 
-
-
                     }
-
-                        break;
+                    employeescreen();
+                    break;
                    case 3:
-                    int q3 = (66 - (this.fname + " " + this.lname + "       userName: " + this.username + "    ID: " + this.id).Length) / 6;
-                    Console.Clear();
-                    C.WriteLine(C.stars);
-                    C.WriteLine(new string('*', q3) + new string(' ', q3) + this.fname + " " + this.lname + new string(' ', q3) + "      userName: " + this.username + new string(' ', q3) + "    ID:  " + this.id + new string(' ', q3) + new string('*', q3));
-                    C.WriteLine(C.stars);
-                    C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
-                    C.WriteLine(C.stars);
-                    this.printEmpItems();
+                    
                     Console.WriteLine("\n\n");
+                    if(EmpItems.Count == 0)
+                     {
+                        C.WriteLine("You dont have any items ");
+                        employeescreen();  
+                    }
                     System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
 
@@ -265,11 +289,17 @@ namespace CPE311_TermProject
 
                     while (flag3)
                     {
-                        Console.Write(C.indent1 + "Enter warehouse name :");
+                       
+                            Console.Write(C.indent1 + "Enter warehouse name :");
                         string wn2 = Console.ReadLine();
                         //
                         //Check warehouse exists using (isWarehouseExists)
                         //
+                        if (!System.isWarehouseExists(wn2))
+                        {
+                            C.WriteLine("No warehouse with that name");
+                            break;
+                        }
                         Console.Write(C.indent1 + "Enter Item name :");
                         string In2 = Console.ReadLine();
                         Console.Write(C.indent1 + "Enter code Number :");
@@ -279,6 +309,11 @@ namespace CPE311_TermProject
                         //
                         //Check item exists in employees items
                         //
+                        if (!checkItem(Ic2, Iq2))
+                        {
+                            C.WriteLine("Item does not exist");
+                            break;
+                        }
                         Console.Write(C.indent1 + "Are you sure Y/N :");
                         char check = Convert.ToChar(Console.ReadLine());
 
@@ -293,9 +328,10 @@ namespace CPE311_TermProject
                                 //
                                 System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
-                                Thread.Sleep(5000);
+                                Thread.Sleep(2000);
                                 Console.Clear();
-                                goto sure;
+                                flag3=false;
+                                break;
                                 
                             case 'n':
                             case 'N':
@@ -313,10 +349,16 @@ namespace CPE311_TermProject
                         }
                        
                     }
+                    employeescreen();
                     break;
                 case 4:
+                    C.WriteLine("Logging Out...");
+                    Thread.Sleep(2000);
+                    System.StoreFiles();
+                    Console.Clear();
                     System.Login();
                     break;
+
                 default:
                     C.WriteLine("\nWRONG INPUT CHOICE");
                     employeescreen();

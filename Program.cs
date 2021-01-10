@@ -76,7 +76,7 @@ namespace CPE311_TermProject
                             string fn, ln, un, ps;
                             int id;
                             C.WriteLine(C.stars);
-                            C.WriteLine(C.stars2 + "Employee Sign Up" + C.stars3);
+                            C.WriteLine(C.stars3 + "Employee Sign Up" + C.stars3);
                             C.WriteLine(C.stars);
                             Console.Write(C.indent1 + "Enter First Name: ");
                             fn = Console.ReadLine();
