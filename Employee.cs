@@ -50,6 +50,60 @@ namespace CPE311_TermProject
 
             }
         }
+        public void addItem(Item item)
+        {
+            bool found = false;
+            int i = 0;
+            while (i < EmpItems.Count)
+            {
+                if (EmpItems[i].getCode() == item.getCode())
+                {
+                    EmpItems[i].changeQuantity(item.getQuantity());
+                    found = true;
+                    break;
+                }
+                i++;
+            }
+            if (!found)
+            {
+                EmpItems.Add(item);
+            }
+        }
+        public Item returnItem(UInt64 code)
+        {
+            int i = 0;
+            while (i < EmpItems.Count)
+            {
+                if (EmpItems[i].getCode() == code)
+                {
+                    break;
+                }
+
+            }
+            return EmpItems[i];
+
+        }
+        public void reduceItemOrDelete(Item item)
+        {
+            Item oldItem = returnItem(item.getCode());
+            if (oldItem.getQuantity() == item.getQuantity())
+                EmpItems.Remove(oldItem);
+            else
+            {
+
+                int i = 0;
+                while (i < EmpItems.Count)
+                {
+                    if (EmpItems[i].getCode() == item.getCode())
+                    {
+                        break;
+                    }
+
+                }
+
+                EmpItems[i].reduceQuantity(item.getQuantity());
+            }
+        }
         public bool checkItem(UInt64 code, UInt64 quantity)
         {
             if (quantity == 0)
@@ -110,7 +164,6 @@ namespace CPE311_TermProject
         }
         public void employeescreen()
         {
-            sure:
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.stars);
             Console.WriteLine(C.indent1 + C.indent1 + C.indent1 + "\t\tWELCOME "+this.fname+" "+ this.lname);
@@ -125,12 +178,12 @@ namespace CPE311_TermProject
             Console.Write(C.indent1+"choice : ");
             ch = Convert.ToInt32(Console.ReadLine());
 
-            int q = (66 - (this.fname + " " + this.lname + "       userName: " + this.username + "    ID: " + this.id).Length) / 6;
+            int q = (66 - (this.fname + " " + this.lname + "       Username: " + this.username + "    ID: " + this.id).Length) / 6;
             Console.Clear();
             C.WriteLine(C.stars);
-            C.WriteLine(new string('*', q) + new string(' ', q) + this.fname + " " + this.lname + new string(' ', q) + "      userName: " + this.username + new string(' ', q) + "    ID:  " + this.id + new string(' ', q) + new string('*', q));
+            C.WriteLine(new string('*', q) + new string(' ', q) + this.fname + " " + this.lname + new string(' ', q) + "      Username: " + this.username + new string(' ', q) + "    ID:  " + this.id + new string(' ', q) + new string('*', q));
             C.WriteLine(C.stars);
-            C.WriteLine("items" + C.indent1 + C.indent1 + "Code" + C.indent1 + C.indent1 + "Price" + C.indent1 + C.indent1 + "Quantity");
+            C.WriteLine("Title\t\t\tCode\tPrice\tQuantity");
             C.WriteLine(C.stars);
             printEmpItems();
 

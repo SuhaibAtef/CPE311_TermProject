@@ -31,6 +31,10 @@ namespace CPE311_TermProject
         {
             return this.code;
         }
+        public double getPrice()
+        {
+            return this.price;
+        }
         public UInt64 getQuantity()
         {
             return this.quantity;
@@ -38,6 +42,10 @@ namespace CPE311_TermProject
         public void changeQuantity(UInt64 value)
         {
             this.quantity += value;
+        }
+        public void reduceQuantity(UInt64 value)
+        {
+            this.quantity -= value;
         }
         public void print()
         {
@@ -82,9 +90,26 @@ namespace CPE311_TermProject
                 items.Add(item);
             }
         }
-        public void deleteItem(Item item)
+        public void reduceItemOrDelete(Item item)
         {
-            items.Remove(item);
+            Item oldItem = returnItem(item.getCode());
+            if(oldItem.getQuantity()==item.getQuantity())
+                items.Remove(oldItem);
+            else
+            {
+
+                int i = 0;
+                while (i < items.Count)
+                {
+                    if (items[i].getCode() == item.getCode())
+                    {
+                        break;
+                    }
+
+                }
+                
+                items[i].reduceQuantity(item.getQuantity());
+            }
         }
         public void viewWarehouse()
         {
@@ -116,6 +141,20 @@ namespace CPE311_TermProject
                 i++;
             }
             return false;
+        }
+        public Item returnItem(UInt64 code)
+        {
+            int i = 0;
+            while (i < items.Count)
+            {
+                if (items[i].getCode() == code)
+                {
+                    break;
+                }
+                
+            }
+            return items[i];
+
         }
     }
 

@@ -75,6 +75,80 @@ namespace CPE311_TermProject
             //
             //code if the supply document is Approved
             //
+            switch (type)
+            {   
+                //Requeste from warehouse to employee 
+                case 1:
+                    
+                    int i;
+                    for (i = 0; i < System.warehouseCounter; i++)
+                    {
+                        if (System.warehouses[i].getName() == warehouseName)
+                        {
+                            break;
+                        }
+                    }
+                    Item empItem = new Item(itemName, System.warehouses[i].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
+                    System.warehouses[i].reduceItemOrDelete(empItem);
+                    i = 0;
+                    for (; i < System.employeeCounter; i++)
+                    {
+                        if (System.employees[i].getUsername() == senderUsername)
+                        {
+                            break;
+                        }
+                    }
+                    System.employees[i].addItem(empItem);
+
+                    break;
+                //transfer from employee to employee 
+                case 2:
+                    int j=0;
+                    for (; j < System.employeeCounter; j++)
+                    {
+                        if (System.employees[j].getUsername() == senderUsername)
+                        {
+                            break;
+                        }
+                    }
+                    Item empItem2 = new Item(itemName, System.employees[j].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
+                    System.employees[j].reduceItemOrDelete(empItem2);
+                    j = 0;
+                    for (; j < System.employeeCounter; j++)
+                    {
+                        if (System.employees[j].getUsername() == recieverUsername)
+                        {
+                            break;
+                        }
+                    }
+                    System.employees[j].addItem(empItem2);
+
+
+                    break;
+                //return from employee to warehouse 
+                case 3:
+                    int k = 0;
+                    for (; k < System.employeeCounter; k++)
+                    {
+                        if (System.employees[k].getUsername() == senderUsername)
+                        {
+                            break;
+                        }
+                    }
+                    Item empItem3 = new Item(itemName, System.employees[k].returnItem(itemCode).getPrice(), itemCode, itemQuantity);
+                    System.employees[k].reduceItemOrDelete(empItem3);
+                    k=0;
+                    for (k = 0; k < System.warehouseCounter; k++)
+                    {
+                        if (System.warehouses[k].getName() == warehouseName)
+                        {
+                            break;
+                        }
+                    }
+                    System.warehouses[k].addItem(empItem3);
+                    break;
+
+            }
 
         }
         /// <summary>

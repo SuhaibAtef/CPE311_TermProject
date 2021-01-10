@@ -62,7 +62,7 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
-                        C.WriteLine("Created Warehouse Successfilly");
+                        C.WriteLine("Created Warehouse Successfully");
                         Thread.Sleep(2000);
                         Console.Clear();
                         
