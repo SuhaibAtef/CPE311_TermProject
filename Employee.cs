@@ -121,6 +121,10 @@ namespace CPE311_TermProject
             }
             return false;
         }
+        public void viewEmployee()
+        {
+            C.WriteLine(username + new string(' ', 23 - username.Length) + id);
+        }
         public static  void SignIn()
         {
 
@@ -177,9 +181,20 @@ namespace CPE311_TermProject
             Console.WriteLine(C.indent1 + C.stars);
             Console.Write(C.indent1+"choice : ");
             ch = Convert.ToInt32(Console.ReadLine());
-
             int q = (66 - (this.fname + " " + this.lname + "       Username: " + this.username + "    ID: " + this.id).Length) / 6;
             Console.Clear();
+            switch (ch)
+            {
+                case 1:
+                    C.WriteLine("***********          Request Supply Document           ***********");
+                    break;
+                case 2:
+                    C.WriteLine("**********           Transfer Supply Document           **********");
+                    break;
+                case 3:
+                    C.WriteLine("***********          Return Supply Documents           ***********");
+                    break;
+            }
             C.WriteLine(C.stars);
             C.WriteLine(new string('*', q) + new string(' ', q) + this.fname + " " + this.lname + new string(' ', q) + "      Username: " + this.username + new string(' ', q) + "    ID:  " + this.id + new string(' ', q) + new string('*', q));
             C.WriteLine(C.stars);
@@ -190,7 +205,7 @@ namespace CPE311_TermProject
             switch (ch)
             {
                 case 1:
-                   
+                    
                     Console.WriteLine("\n\n");
                     System.viewWarehouses();
                     C.WriteLine("--------------------------------------------------------");
@@ -252,7 +267,10 @@ namespace CPE311_TermProject
                     employeescreen();
                     break;
                 case 2:
-
+                    Console.WriteLine("\n\n");
+                    C.WriteLine(new string('*', 13) + new string(' ', 13) + "Employees List"+new string(' ', 13) + new string('*', 13));
+                    C.WriteLine("Username"+new string(' ',15)+"Id");
+                    System.viewEmployees();
                     C.WriteLine("--------------------------------------------------------");
                     if (EmpItems.Count == 0)
                     {

@@ -141,6 +141,13 @@ namespace CPE311_TermProject
                 System.warehouses[i].viewWarehouse();
             }
         }
+        static public void viewEmployees()
+        {
+            for (int i = 0; i < System.employeeCounter; i++)
+            {
+                System.employees[i].viewEmployee();
+            }
+        }
         //
         //CheckEmployeeExists
         //

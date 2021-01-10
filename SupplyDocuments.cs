@@ -68,6 +68,7 @@ namespace CPE311_TermProject
             C.WriteLine(C.stars);
             C.WriteLine("Item: " + itemName + "  Quantity: " + itemQuantity + "  Date: " + date.ToString());
             C.WriteLine(C.dashes);
+
         }
 
         public void approve()
