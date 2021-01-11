@@ -253,14 +253,26 @@ namespace CPE311_TermProject
                             case 'n':
                             case 'N':
                                 C.WriteLine("1- Enter information again?");
-                                C.WriteLine("2- Exist to your main screen");
+                                C.WriteLine("2- Exit to your main screen");
                                 Console.Write(C.indent1 + "ENTER YOU CHOICE : ");
                                 int c = Convert.ToInt32(Console.ReadLine());
                                 if (c == 1)
                                     continue;
-                                else
+                                else if (c == 2)
+                                {
                                     Console.Clear();
-                                break;
+                                    employeescreen();
+                                    break;
+
+
+                                }
+                                else {
+                                    C.WriteLine("Wrong input returning to your main screen...");
+                                    Thread.Sleep(2000);
+                                    employeescreen();
+                                    break;
+                                
+                                }
 
                         }
                     }
@@ -330,15 +342,28 @@ namespace CPE311_TermProject
                             case 'n':
                             case 'N':
                                 Console.Write(C.indent1 + "1- Enter information again? :");
-                                Console.Write(C.indent1 + "2- Exist to your main screen :");
+                                Console.Write(C.indent1 + "2- Exit to your main screen :");
                                 Console.Write(C.indent1 + "ENTER YOU CHOICE :");
                                 int c = Convert.ToInt32(Console.ReadLine());
                                 if (c == 1)
                                     continue;
-                                else
+                                else if (c == 2)
+                                {
                                     Console.Clear();
-                                employeescreen();
-                                break;
+                                    employeescreen();
+                                    break;
+
+
+                                }
+                                else
+                                {
+                                    C.WriteLine("Wrong input returning to your main screen...");
+                                    Thread.Sleep(2000);
+                                    employeescreen();
+                                    break;
+
+                                }
+
 
                         }
 
@@ -407,18 +432,31 @@ namespace CPE311_TermProject
                             case 'n':
                             case 'N':
                                 Console.Write(C.indent1 + "1- Enter information again? :");
-                                Console.Write(C.indent1 + "2- Exist to your main screen :");
+                                Console.Write(C.indent1 + "2- Exit to your main screen :");
                                 Console.Write(C.indent1 + "ENTER YOU CHOICE :");
                                 int c = Convert.ToInt32(Console.ReadLine());
                                 if (c == 1)
                                     continue;
-                                else
+                                else if (c == 2)
+                                {
                                     Console.Clear();
-                                employeescreen();
-                                break;
+                                    employeescreen();
+                                    break;
+
+
+                                }
+                                else
+                                {
+                                    C.WriteLine("Wrong input returning to your main screen...");
+                                    Thread.Sleep(2000);
+                                    employeescreen();
+                                    break;
+
+                                }
+
 
                         }
-                       
+
                     }
                     employeescreen();
                     break;
