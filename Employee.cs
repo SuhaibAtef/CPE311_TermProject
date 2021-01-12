@@ -158,6 +158,7 @@ namespace CPE311_TermProject
             else
             {
                 C.WriteLine("username or password was wrong...  Try Agin?(y,n)");
+                Console.Write(C.indent1);
                 char again = (char)Console.ReadLine()[0];
                 if (again == 'y' || again == 'Y')
                     SignIn();
@@ -241,8 +242,7 @@ namespace CPE311_TermProject
                         {
                             case 'Y':
                             case 'y':
-                                string d = DateTime.Now.ToString();
-                                SupplyDocuments supply = new SupplyDocuments(1, In, Ic, Iq, this.username, wn);
+                                SupplyDocument supply = new SupplyDocument(1, In, Ic, Iq, this.username, wn);
                                 System.supplyDocuments.Add(supply);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(2000);
@@ -331,8 +331,7 @@ namespace CPE311_TermProject
                         {
                             case 'Y':
                             case 'y':
-                                string d = DateTime.Now.ToString();
-                                SupplyDocuments supply2 = new SupplyDocuments(2,Iname,Icode,Iquantity,this.username," ",un,Id);
+                                SupplyDocument supply2 = new SupplyDocument(2,Iname,Icode,Iquantity,this.username," ",un,Id);
                                 System.supplyDocuments.Add(supply2);
                                 C.WriteLine("Supply document created ");
                                 Thread.Sleep(2000);
@@ -417,8 +416,7 @@ namespace CPE311_TermProject
                         {
                             case 'Y':
                             case 'y':
-                                string d = DateTime.Now.ToString();
-                                SupplyDocuments supply2 = new SupplyDocuments(3,In2,Ic2,Iq2,this.username,wn2);
+                                SupplyDocument supply2 = new SupplyDocument(3,In2,Ic2,Iq2,this.username,wn2);
                                 //
                                 // ADD THE SUPPLY DOCUMENT
                                 //

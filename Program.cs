@@ -16,7 +16,7 @@ namespace CPE311_TermProject
         public static UInt32 warehouseCounter = 0;
         public static Employee[] employees = new Employee[100];
         public static UInt32 employeeCounter = 0;
-        public static List<SupplyDocuments> supplyDocuments = new List<SupplyDocuments>();
+        public static List<SupplyDocument> supplyDocuments = new List<SupplyDocument>();
         static public void Login()
         {
             Manager m = new Manager("Manager", "Manager");
@@ -28,12 +28,10 @@ namespace CPE311_TermProject
             while (true)
             {
 
-
-                
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                C.WriteLine( C.indent1 + C.indent1 + "Login to Central Supply Unit System");
+                C.WriteLine( C.indent1 + C.indent1 + C.indent1 + "Login to Central Supply Unit System");
                 C.WriteLine( "1. Manager");
                 C.WriteLine( "2. Employee");
                 C.WriteLine( "3. Employee Sign up");
@@ -80,14 +78,31 @@ namespace CPE311_TermProject
                             C.WriteLine(C.stars);
                             Console.Write(C.indent1 + "Enter First Name: ");
                             fn = Console.ReadLine();
+                            if (String.IsNullOrWhiteSpace(fn))
+                            {
+                                throw new FormatException();
+
+                            }
                             Console.Write(C.indent1 + "Enter Last Name: ");
                             ln = Console.ReadLine();
+                            if (String.IsNullOrWhiteSpace(ln))
+                            {
+                                throw new FormatException();
+                            }
                             Console.Write(C.indent1 + "Enter ID: ");
                             id = Convert.ToInt32(Console.ReadLine());
                             Console.Write(C.indent1 + "Enter Username: ");
                             un = Console.ReadLine();
+                            if (String.IsNullOrWhiteSpace(un))
+                            {
+                                throw new FormatException();
+                            }
                             Console.Write(C.indent1 + "Enter Password: ");
                             ps = Console.ReadLine();
+                            if (String.IsNullOrWhiteSpace(ps))
+                            {
+                                throw new FormatException();
+                            }
                             if (!isEmployeeExists(un))
                             {
                                 employees[employeeCounter++] = new Employee(fn, ln, id, un, ps);
@@ -243,7 +258,7 @@ namespace CPE311_TermProject
                 //int supplyDocumentsCounter = 0;
                 while (supplyDocuments_file.Position < supplyDocuments_file.Length)
                 {
-                    supplyDocuments.Add((SupplyDocuments)formatter.Deserialize(supplyDocuments_file));
+                    supplyDocuments.Add((SupplyDocument)formatter.Deserialize(supplyDocuments_file));
                 }
 
             }
@@ -291,10 +306,11 @@ namespace CPE311_TermProject
         {
             /// <summary>
             /// for debuging, I added this function to increase the days that a supply document has , so we would be able to delete them 
+            /// supplyDocuments.Add(new SupplyDocument(1, "something", 25, 30, "suhaib", "h"));
+            /// supplyDocuments[0].changeTime(181);
             /// </summary>
-            //supplyDocuments.Add(new SupplyDocuments(1, "something", 25, 30, "suhaib", "h"));
-            //supplyDocuments[0].changeTime(181);
-            
+
+
             loadFiles();
             Login();
         }

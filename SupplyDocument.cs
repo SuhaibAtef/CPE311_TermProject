@@ -5,7 +5,7 @@ using System.Text;
 namespace CPE311_TermProject
 {
     [Serializable]
-    class SupplyDocuments
+    class SupplyDocument
     {
         private string warehouseName;
         private string itemName;
@@ -17,7 +17,7 @@ namespace CPE311_TermProject
         private string recieverUsername;
         private int receiverId;
 
-        public SupplyDocuments(int type, string itemName, UInt64 itemCode, UInt64 itemQuantity, string senderUsername, string warehouseName="", string recieverUsername="", int receiverId=0)
+        public SupplyDocument(int type, string itemName, UInt64 itemCode, UInt64 itemQuantity, string senderUsername, string warehouseName="", string recieverUsername="", int receiverId=0)
         {
             this.itemName = itemName;
             this.itemCode = itemCode;

@@ -47,7 +47,7 @@ namespace CPE311_TermProject
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
                 C.WriteLine(C.stars);
-                C.WriteLine(C.indent2 + "Manager");
+                C.WriteLine(new String(' ', 29) + "Manager");
                 C.WriteLine("1. Create warehouse");
                 C.WriteLine("2. Add item to warehouse");
                 C.WriteLine("3. View warehouses");
@@ -62,7 +62,6 @@ namespace CPE311_TermProject
                 {
                         //Create Warehouse
                         Create_Warehouse();
-                        C.WriteLine("Created Warehouse Successfully");
                         Thread.Sleep(2000);
                         Console.Clear();
                         
@@ -91,14 +90,14 @@ namespace CPE311_TermProject
                         //
                         //View supply documents();
                         //
-                        List<SupplyDocuments> deletedSupplyDocs = new List<SupplyDocuments>();
+                        List<SupplyDocument> deletedSupplyDocs = new List<SupplyDocument>();
 
                         if(System.supplyDocuments.Count == 0)
                         {
                             C.WriteLine("There's No Supply Documents to View.");
                         }else
                         { 
-                        foreach (SupplyDocuments supply in System.supplyDocuments)
+                        foreach (SupplyDocument supply in System.supplyDocuments)
                         {
                             supply.viewSupply();
                             Console.Write(C.indent1 + "1.Approve  2.Delete  3.Postpone  ");
@@ -121,7 +120,7 @@ namespace CPE311_TermProject
                             }
 
                         }
-                        foreach (SupplyDocuments supply in deletedSupplyDocs)
+                        foreach (SupplyDocument supply in deletedSupplyDocs)
                         {
                                 System.supplyDocuments.Remove(supply);
                         }
@@ -169,7 +168,7 @@ namespace CPE311_TermProject
                 }
                     else
                 {
-                    Console.WriteLine("Incorrect Choice, Please try again...");
+                    C.WriteLine("Incorrect Choice, Please try again...");
                 }
             }
             }
@@ -187,12 +186,16 @@ namespace CPE311_TermProject
             
             if (System.isWarehouseExists(wName))
             {
-                C.WriteLine(C.indent1+"Warehouse already exists.");
+                C.WriteLine("Warehouse already exists.");
                 
+            }else if(String.IsNullOrWhiteSpace(wName))
+            {
+                C.WriteLine("You Can't define a warehouse name empty");
             }
             else
             {
                 System.warehouses[System.warehouseCounter++] = new Warehouse(wName);
+                C.WriteLine("Created Warehouse Successfully");
                 System.StoreFiles();
             }
 
@@ -233,6 +236,10 @@ namespace CPE311_TermProject
                     {
                         Console.Write(C.indent1 + "Enter item's Name:  ");
                         string Iname = Console.ReadLine();
+                        if (String.IsNullOrWhiteSpace(Iname))
+                        {
+                            throw new FormatException();
+                        }
                         Console.Write(C.indent1 + "Enter item's Price:  ");
                         double price = Convert.ToDouble(Console.ReadLine());
                         if (price < 0)
