@@ -78,7 +78,7 @@ namespace CPE311_TermProject
                 {
                     break;
                 }
-
+                i++;
             }
             return EmpItems[i];
 
@@ -319,7 +319,7 @@ namespace CPE311_TermProject
                         //
                         if (!checkItem(Icode,Iquantity))
                         {
-                            C.WriteLine("Item does not exist");
+                            C.WriteLine("Wrong Item informations");
                             break;
                         }
                         Console.Write(C.indent1 + "Enter Username of the employee :");
