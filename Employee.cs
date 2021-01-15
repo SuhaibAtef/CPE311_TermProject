@@ -242,7 +242,7 @@ namespace CPE311_TermProject
                         
                         if (!warehouse.checkItem(Ic,Iq))
                         {
-                            C.WriteLine("No Item with that name or quantity");
+                            C.WriteLine("No Item with that code or quantity");
                             break;
                         }
                         Console.Write(C.indent1 + "Are you sure Y/N : ");
@@ -421,7 +421,7 @@ namespace CPE311_TermProject
                         //
                         if (!checkItem(Ic2, Iq2))
                         {
-                            C.WriteLine("Item does not exist");
+                            C.WriteLine("Wrong Item informations");
                             break;
                         }
                         Console.Write(C.indent1 + "Are you sure Y/N :");
