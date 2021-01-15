@@ -59,7 +59,8 @@ namespace CPE311_TermProject
                         
 
                         Console.Clear();
-                        Employee.SignIn();  
+                        Employee.SignIn();
+                        
                         break;
                 }
                 //

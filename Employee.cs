@@ -163,6 +163,7 @@ namespace CPE311_TermProject
 
             if (exist)
             {
+                //C.rURobot();
                 System.employees[i].employeescreen();
             }
             else

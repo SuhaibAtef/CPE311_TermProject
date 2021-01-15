@@ -81,7 +81,14 @@ namespace CPE311_TermProject
                         //View warehouses();
                         //
                         Console.Clear();
-                        System.viewWarehouses();
+                        if (System.warehouseCounter == 0)
+                        {
+                            C.WriteLine("There's No Warehouses to view.");
+                        }else
+                        {
+                           System.viewWarehouses();
+                        }
+                        
                         Thread.Sleep(2000);
 
                     }

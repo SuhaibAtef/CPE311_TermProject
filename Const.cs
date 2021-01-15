@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace CPE311_TermProject
 {
@@ -18,5 +19,56 @@ namespace CPE311_TermProject
         {
             Console.WriteLine(C.indent1 + str);
         }
+
+        public static void RURObot()
+        {
+            C.WriteLine("&                                            /////%%%%%  %                ");
+            C.WriteLine("&                                            /////  %%%%%%           ");
+            C.WriteLine("&                                          ////      %%%%%        ");
+            C.WriteLine("&                                         ,,,,                           ");
+            C.WriteLine("&                                        ,,,,,,     ,,,          ");
+            C.WriteLine("&                                            ,,,,,,,,");
+            C.WriteLine("&                                              ,,,");
+            C.WriteLine("&                                                           ");
+            C.WriteLine("&                                           reCAPTCHA");
+            C.WriteLine("&                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+            C.WriteLine("&                .                                                       . ");
+            C.WriteLine("&                .          ____                                         . ");
+            C.WriteLine("&                .         |    |      Are You a ROBOT?                  . ");
+            C.WriteLine("&                .         |____|                                        . ");
+            C.WriteLine("&                .                                                       . ");
+            C.WriteLine("&                . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ");
+        }
+        public static void RURObotNOO()
+        {
+            C.WriteLine("&                                            /////%%%%%  %                ");
+            C.WriteLine("&                                            /////  %%%%%%           ");
+            C.WriteLine("&                                          ////      %%%%%        ");
+            C.WriteLine("&                                         ,,,,                           ");
+            C.WriteLine("&                                        ,,,,,,     ,,,          ");
+            C.WriteLine("&                                            ,,,,,,,,");
+            C.WriteLine("&                                              ,,,");
+            C.WriteLine("&                                                           ");
+            C.WriteLine("&                                           reCAPTCHA");
+            C.WriteLine("&                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ");
+            C.WriteLine("&                .                                                       . ");
+            C.WriteLine("&                .          ____                                         . ");
+            C.WriteLine("&                .         | \\/ |      Are You a ROBOT?                  . ");
+            C.WriteLine("&                .         |_/\\_|                                        . ");
+            C.WriteLine("&                .                                                       . ");
+            C.WriteLine("&                . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  ");
+        }
+        public static void rURobot()
+        {
+            Console.Clear();
+            Thread.Sleep(500);
+            RURObot();
+            Thread.Sleep(2000);
+            Console.Clear();
+            RURObotNOO();
+            Thread.Sleep(3000);
+            Console.Clear();
+        }
+
     }
 }
