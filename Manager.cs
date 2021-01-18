@@ -144,7 +144,7 @@ namespace CPE311_TermProject
                         for(int i = 0; i< System.supplyDocuments.Count;i++)
                         {
                             DateTime d = System.supplyDocuments[i].getDate();
-                            if(d.Subtract(today).TotalDays > 180)
+                            if(today.Subtract(d).TotalDays > 180)
                             {
                                 deleteSupply = true; 
                                 System.supplyDocuments.Remove(System.supplyDocuments[i]);
